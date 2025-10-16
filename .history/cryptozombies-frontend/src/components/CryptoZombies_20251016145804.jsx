@@ -181,7 +181,7 @@ const CryptoZombies = () => {
         params: [
           {
             from: userAccount,
-            to: "0x5d9f4035D4D8408a503CDC388D60A8c012d618Ce",
+            to: "0x737715bBFB12C5D757e6EeF628bA12522f4488e2",
             data: cryptoZombies.methods.changeDna(zombieId, dna).encodeABI(),
           },
         ],
