@@ -235,9 +235,7 @@ const CryptoZombies = () => {
       <div className="modern-container">
         <div className="modern-header">
           <h1 className="modern-title">Crypto Zombies</h1>
-          <p className="modern-subtitle">
-            Collect, breed, and battle your digital creatures on the blockchain
-          </p>
+          <p className="modern-subtitle">Collect, breed, and battle your digital creatures on the blockchain</p>
         </div>
         {/* Network Switch Button */}
         <div className="fade-in">
@@ -309,8 +307,7 @@ const CryptoZombies = () => {
                 </div>
               </div>
               <div className="creature-meta">
-                Ready:{" "}
-                {new Date(Number(zombie.readyTime) * 1000).toLocaleString()}
+                Ready: {new Date(Number(zombie.readyTime) * 1000).toLocaleString()}
               </div>
               <div className="creature-actions">
                 <button

@@ -1,0 +1,353 @@
+/* Modern Liquid UI Effects for Crypto Zombies */
+
+/* Liquid Background Animation */
+@keyframes liquidFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes liquidFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+@keyframes liquidPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes liquidGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.3), 0 0 40px rgba(20, 184, 166, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(20, 184, 166, 0.6), 0 0 60px rgba(20, 184, 166, 0.3);
+  }
+}
+
+@keyframes liquidRipple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Liquid Background */
+.liquid-bg {
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #475569);
+  background-size: 400% 400%;
+  animation: liquidFlow 15s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
+  animation: liquidFloat 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.liquid-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(20, 184, 166, 0.05) 50%, transparent 70%);
+  animation: liquidFlow 25s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+/* Liquid Cards */
+.zombie {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: liquidFloat 6s ease-in-out infinite;
+}
+
+.zombie::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.zombie:hover::before {
+  left: 100%;
+}
+
+.zombie:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(20, 184, 166, 0.6);
+  box-shadow: 0 20px 40px rgba(20, 184, 166, 0.3), 0 0 60px rgba(20, 184, 166, 0.1);
+  animation: liquidGlow 2s ease-in-out infinite;
+}
+
+/* Liquid Buttons */
+.btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific Button Styles */
+.btn.bg-green-500:hover {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+}
+
+.btn.bg-blue-500:hover {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+}
+
+.btn.bg-purple-500:hover {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+
+/* Liquid Input Fields */
+input[type="text"] {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  border-radius: 50px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: rgba(20, 184, 166, 0.8);
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
+  transform: scale(1.02);
+}
+
+/* Liquid Status Messages */
+#txStatus p {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(20, 184, 166, 0.1));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  border-radius: 20px;
+  padding: 12px 24px;
+  animation: liquidPulse 2s ease-in-out infinite;
+}
+
+/* Liquid Images */
+.zombie-image, .kitty-image {
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+.zombie:hover .zombie-image,
+.kitty:hover .kitty-image {
+  transform: scale(1.1) rotate(2deg);
+  filter: drop-shadow(0 15px 30px rgba(20, 184, 166, 0.3));
+}
+
+/* Liquid Network Switch Button */
+button.bg-blue-600 {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button.bg-blue-600:hover {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
+}
+
+/* Liquid Create Buttons */
+button.bg-teal-600 {
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  border: 1px solid rgba(13, 148, 136, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button.bg-teal-600:hover {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(20, 184, 166, 0.4);
+}
+
+/* Liquid Container */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Liquid Floating Elements */
+.liquid-float {
+  animation: liquidFloat 8s ease-in-out infinite;
+}
+
+.liquid-float:nth-child(2n) {
+  animation-delay: -2s;
+}
+
+.liquid-float:nth-child(3n) {
+  animation-delay: -4s;
+}
+
+/* Liquid Ripple Effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: liquidRipple 0.6s ease-out;
+}
+
+/* Liquid Text Effects */
+.text-teal-400 {
+  background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: liquidPulse 3s ease-in-out infinite;
+}
+
+/* Liquid Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+}
+
+/* Liquid Responsive Design */
+@media (max-width: 768px) {
+  .zombie {
+    animation-duration: 8s;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .liquid-bg::before,
+  .liquid-bg::after {
+    animation-duration: 30s;
+  }
+}
+
+/* Liquid Loading States */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.4), transparent);
+  animation: liquidFlow 1.5s ease-in-out infinite;
+}
+
+/* Liquid Success States */
+.success {
+  animation: liquidGlow 1s ease-in-out;
+}
+
+/* Liquid Error States */
+.error {
+  animation: liquidPulse 0.5s ease-in-out 3;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+}

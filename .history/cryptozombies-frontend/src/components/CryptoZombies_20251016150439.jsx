@@ -231,18 +231,16 @@ const CryptoZombies = () => {
   };
 
   return (
-    <div className="modern-bg">
-      <div className="modern-container">
-        <div className="modern-header">
-          <h1 className="modern-title">Crypto Zombies</h1>
-          <p className="modern-subtitle">
-            Collect, breed, and battle your digital creatures on the blockchain
-          </p>
+    <div className="apple-bg min-h-screen">
+      <div className="apple-container">
+        <div className="apple-header">
+          <h1>Crypto Zombies</h1>
+          <p className="apple-subtitle">Collect, breed, and battle your digital creatures</p>
         </div>
         {/* Network Switch Button */}
-        <div className="fade-in">
+        <div className="apple-fade-in">
           <button
-            className="modern-btn modern-btn-primary"
+            className="apple-btn apple-btn-primary apple-ripple"
             onClick={switchToGanacheNetwork}
           >
             Switch to Ganache Network
@@ -250,87 +248,107 @@ const CryptoZombies = () => {
         </div>
 
         {/* Zombie Creation */}
-        <div className="modern-form-group fade-in-delay-1">
+        <div className="apple-form-group apple-fade-in-delay-1">
           <input
             type="text"
             ref={zombieNameRef}
             placeholder="Enter zombie name"
-            className="modern-input"
+            className="apple-input"
           />
           <button
-            className="modern-btn modern-btn-secondary"
+            className="apple-btn apple-btn-success apple-ripple"
             onClick={() => createRandomZombie()}
           >
             Create Zombie
           </button>
         </div>
 
-        {/* Kitty Creation */}
-        <div className="modern-form-group fade-in-delay-2">
-          <input
-            type="text"
-            ref={kittyNameRef}
-            placeholder="Enter kitty name"
-            className="modern-input"
-          />
-          <button
-            className="modern-btn modern-btn-outline"
-            onClick={() => createKitty()}
-          >
-            Create Kitty
-          </button>
+        {/* Kitty Creation Input */}
+        <div className="mb-8 liquid-float">
+          <div className="flex justify-center items-center gap-4">
+            <input
+              type="text"
+              ref={kittyNameRef}
+              placeholder="🐱 Enter Kitty Name"
+              className="text-white mx-2 py-3 px-6 rounded-full bg-black bg-opacity-50 backdrop-blur-lg border border-teal-400 border-opacity-30 focus:border-opacity-80 focus:scale-105 transition-all duration-300"
+            />
+            <button
+              className="bg-teal-600 hover:bg-teal-400 text-white font-bold py-3 px-6 rounded-full shadow-lg ripple"
+              onClick={() => createKitty()}
+            >
+              🎨 Create Kitty
+            </button>
+          </div>
         </div>
 
         {/* Status Message */}
         {status !== "" && (
-          <div id="txStatus" className="modern-status">
-            <p>{status}</p>
+          <div id="txStatus" className="mb-8 liquid-float">
+            <p className="text-teal-400 text-lg font-semibold">{status}</p>
           </div>
         )}
 
         {/* Display Zombies */}
-        <div className="modern-grid">
+        <div className="flex flex-wrap -mx-3 p-6">
           {zombies.map((zombie, index) => (
-            <div key={index} className="creature-card fade-in-delay-3">
-              <img
-                src={`https://robohash.org/${index + zombie.name}?set=set1`}
-                alt="Zombie"
-                className="creature-image"
-              />
-              <h3 className="creature-name">{zombie.name}</h3>
-              <div className="creature-stats">
-                <div className="stat-item">
-                  <div className="stat-label">DNA</div>
-                  <div className="stat-value">{Number(zombie.dna)}</div>
+            <div key={index} className="w-full md:w-1/3 px-3 mb-8 liquid-float">
+              <div className="zombie shadow-lg rounded-lg p-6 flex flex-col items-center">
+                <div className="w-48 h-48 mb-6 flex items-center justify-center rounded-full p-3 bg-gradient-to-br from-teal-500/20 to-purple-500/20 backdrop-blur-sm">
+                  <img
+                    src={`https://robohash.org/${index + zombie.name}?set=set1`}
+                    alt="Zombie"
+                    className="zombie-image object-cover rounded-full w-full h-full"
+                  />
                 </div>
-                <div className="stat-item">
-                  <div className="stat-label">Level</div>
-                  <div className="stat-value">{Number(zombie.level)}</div>
+                <div className="text-center w-full space-y-3">
+                  <h2 className="text-xl font-bold text-teal-400 mb-2">
+                    🧟‍♂️ {zombie.name}
+                  </h2>
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="bg-black/30 rounded-lg p-3 backdrop-blur-sm">
+                      <p className="text-teal-300 font-semibold">DNA</p>
+                      <p className="text-white">{Number(zombie.dna)}</p>
+                    </div>
+                    <div className="bg-black/30 rounded-lg p-3 backdrop-blur-sm">
+                      <p className="text-teal-300 font-semibold">Level</p>
+                      <p className="text-white">{Number(zombie.level)}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-400 bg-black/20 rounded-lg p-2">
+                    ⏰ Ready:{" "}
+                    {new Date(Number(zombie.readyTime) * 1000).toLocaleString()}
+                  </p>
+                  {/* <button
+                    className='bg-teal-600 hover:bg-teal-400 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline shadow-lg'
+                    onClick={() => levelUp(index)}>
+                    Level Up
+                  </button> */}
+                  <div className="btn-wrapper flex flex-wrap gap-2 justify-center mt-4">
+                    {/* Level Up Button */}
+                    <button
+                      className="btn bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 text-sm rounded-full ripple"
+                      onClick={() => levelUp(index)}
+                    >
+                      ⬆️ Level Up
+                    </button>
+
+                    {/* Update Name Button (Blue) */}
+                    <button
+                      className="btn bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 text-sm rounded-full ripple"
+                      onClick={() => updateZombieName(index)}
+                    >
+                      ✏️ Update Name
+                    </button>
+
+                    {/* Update DNA Button (Purple) */}
+                    <button
+                      className="btn bg-purple-500 hover:bg-purple-700 text-white font-semibold py-2 px-4 text-sm rounded-full ripple"
+                      onClick={() => updateZombieDNA(index)}
+                    >
+                      🧬 Update DNA
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="creature-meta">
-                Ready:{" "}
-                {new Date(Number(zombie.readyTime) * 1000).toLocaleString()}
-              </div>
-              <div className="creature-actions">
-                <button
-                  className="action-btn action-btn-level"
-                  onClick={() => levelUp(index)}
-                >
-                  Level Up
-                </button>
-                <button
-                  className="action-btn action-btn-rename"
-                  onClick={() => updateZombieName(index)}
-                >
-                  Rename
-                </button>
-                <button
-                  className="action-btn action-btn-dna"
-                  onClick={() => updateZombieDNA(index)}
-                >
-                  Update DNA
-                </button>
               </div>
             </div>
           ))}
@@ -338,25 +356,41 @@ const CryptoZombies = () => {
           {/* Display Kitties */}
           {kitties.length > 0 &&
             kitties.map((kitty) => (
-              <div key={kitty.id} className="creature-card fade-in-delay-3">
-                <img
-                  src={`https://robohash.org/${kitty.name + kitty.id}?set=set4`}
-                  alt="Kitty"
-                  className="creature-image"
-                />
-                <h3 className="creature-name">{kitty.name}</h3>
-                <div className="creature-stats">
-                  <div className="stat-item">
-                    <div className="stat-label">Generation</div>
-                    <div className="stat-value">{kitty.generation}</div>
+              <div
+                key={kitty.id}
+                className="w-full md:w-1/3 px-3 mb-8 liquid-float"
+              >
+                <div className="kitty shadow-lg rounded-lg p-6 flex flex-col items-center">
+                  <div className="w-48 h-48 mb-6 flex items-center justify-center rounded-full p-3 bg-gradient-to-br from-pink-500/20 to-blue-500/20 backdrop-blur-sm">
+                    <img
+                      src={`https://robohash.org/${
+                        kitty.name + kitty.id
+                      }?set=set4`} // Different image set for kitties
+                      alt="Kitty"
+                      className="kitty-image object-cover rounded-full w-full h-full"
+                    />
                   </div>
-                  <div className="stat-item">
-                    <div className="stat-label">Color</div>
-                    <div className="stat-value">{kitty.color}</div>
+                  <div className="text-center w-full space-y-3">
+                    <h2 className="text-xl font-bold text-teal-400 mb-2">
+                      🐱 {kitty.name}
+                    </h2>
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div className="bg-black/30 rounded-lg p-3 backdrop-blur-sm">
+                        <p className="text-teal-300 font-semibold">
+                          Generation
+                        </p>
+                        <p className="text-white">{kitty.generation}</p>
+                      </div>
+                      <div className="bg-black/30 rounded-lg p-3 backdrop-blur-sm">
+                        <p className="text-teal-300 font-semibold">Color</p>
+                        <p className="text-white">{kitty.color}</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-400 bg-black/20 rounded-lg p-2">
+                      🎂 Birthday:{" "}
+                      {new Date(kitty.birthday).toLocaleDateString()}
+                    </p>
                   </div>
-                </div>
-                <div className="creature-meta">
-                  Birthday: {new Date(kitty.birthday).toLocaleDateString()}
                 </div>
               </div>
             ))}

@@ -235,9 +235,7 @@ const CryptoZombies = () => {
       <div className="modern-container">
         <div className="modern-header">
           <h1 className="modern-title">Crypto Zombies</h1>
-          <p className="modern-subtitle">
-            Collect, breed, and battle your digital creatures on the blockchain
-          </p>
+          <p className="modern-subtitle">Collect, breed, and battle your digital creatures on the blockchain</p>
         </div>
         {/* Network Switch Button */}
         <div className="fade-in">
@@ -309,8 +307,7 @@ const CryptoZombies = () => {
                 </div>
               </div>
               <div className="creature-meta">
-                Ready:{" "}
-                {new Date(Number(zombie.readyTime) * 1000).toLocaleString()}
+                Ready: {new Date(Number(zombie.readyTime) * 1000).toLocaleString()}
               </div>
               <div className="creature-actions">
                 <button
@@ -338,25 +335,31 @@ const CryptoZombies = () => {
           {/* Display Kitties */}
           {kitties.length > 0 &&
             kitties.map((kitty) => (
-              <div key={kitty.id} className="creature-card fade-in-delay-3">
-                <img
-                  src={`https://robohash.org/${kitty.name + kitty.id}?set=set4`}
-                  alt="Kitty"
-                  className="creature-image"
-                />
-                <h3 className="creature-name">{kitty.name}</h3>
-                <div className="creature-stats">
-                  <div className="stat-item">
-                    <div className="stat-label">Generation</div>
-                    <div className="stat-value">{kitty.generation}</div>
+              <div key={kitty.id} className="w-full md:w-1/3 px-3 mb-6">
+                <div className="kitty bg-black shadow-lg rounded-lg p-4 flex flex-col items-center hover:shadow-teal-500 transition-transform duration-300 hover:scale-105">
+                  <div className="w-44 h-44 mb-4 flex items-center justify-center rounded-full p-2">
+                    <img
+                      src={`https://robohash.org/${
+                        kitty.name + kitty.id
+                      }?set=set4`} // Different image set for kitties
+                      alt="Kitty"
+                      className="kitty-image object-cover rounded-none"
+                    />
                   </div>
-                  <div className="stat-item">
-                    <div className="stat-label">Color</div>
-                    <div className="stat-value">{kitty.color}</div>
+                  <div className="text-left w-full">
+                    <h2 className="text-lg font-bold text-teal-400 mb-1">
+                      Name: {kitty.name}
+                    </h2>
+                    <p className="text-md text-gray-300">
+                      Generation: {kitty.generation}
+                    </p>
+                    <p className="text-md text-gray-300">
+                      Color: {kitty.color}
+                    </p>
+                    <p className="text-sm mb-4 text-gray-500">
+                      Birthday: {new Date(kitty.birthday).toLocaleDateString()}
+                    </p>
                   </div>
-                </div>
-                <div className="creature-meta">
-                  Birthday: {new Date(kitty.birthday).toLocaleDateString()}
                 </div>
               </div>
             ))}

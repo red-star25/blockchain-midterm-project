@@ -231,18 +231,16 @@ const CryptoZombies = () => {
   };
 
   return (
-    <div className="modern-bg">
-      <div className="modern-container">
-        <div className="modern-header">
-          <h1 className="modern-title">Crypto Zombies</h1>
-          <p className="modern-subtitle">
-            Collect, breed, and battle your digital creatures on the blockchain
-          </p>
+    <div className="apple-bg min-h-screen">
+      <div className="apple-container">
+        <div className="apple-header">
+          <h1>Crypto Zombies</h1>
+          <p className="apple-subtitle">Collect, breed, and battle your digital creatures</p>
         </div>
         {/* Network Switch Button */}
-        <div className="fade-in">
+        <div className="apple-fade-in">
           <button
-            className="modern-btn modern-btn-primary"
+            className="apple-btn apple-btn-primary apple-ripple"
             onClick={switchToGanacheNetwork}
           >
             Switch to Ganache Network
@@ -250,15 +248,15 @@ const CryptoZombies = () => {
         </div>
 
         {/* Zombie Creation */}
-        <div className="modern-form-group fade-in-delay-1">
+        <div className="apple-form-group apple-fade-in-delay-1">
           <input
             type="text"
             ref={zombieNameRef}
             placeholder="Enter zombie name"
-            className="modern-input"
+            className="apple-input"
           />
           <button
-            className="modern-btn modern-btn-secondary"
+            className="apple-btn apple-btn-success apple-ripple"
             onClick={() => createRandomZombie()}
           >
             Create Zombie
@@ -266,15 +264,15 @@ const CryptoZombies = () => {
         </div>
 
         {/* Kitty Creation */}
-        <div className="modern-form-group fade-in-delay-2">
+        <div className="apple-form-group apple-fade-in-delay-2">
           <input
             type="text"
             ref={kittyNameRef}
             placeholder="Enter kitty name"
-            className="modern-input"
+            className="apple-input"
           />
           <button
-            className="modern-btn modern-btn-outline"
+            className="apple-btn apple-btn-secondary apple-ripple"
             onClick={() => createKitty()}
           >
             Create Kitty
@@ -283,54 +281,57 @@ const CryptoZombies = () => {
 
         {/* Status Message */}
         {status !== "" && (
-          <div id="txStatus" className="modern-status">
-            <p>{status}</p>
+          <div id="txStatus" className="apple-status apple-fade-in">
+            <p className="apple-text">{status}</p>
           </div>
         )}
 
         {/* Display Zombies */}
-        <div className="modern-grid">
+        <div className="apple-grid">
           {zombies.map((zombie, index) => (
-            <div key={index} className="creature-card fade-in-delay-3">
-              <img
-                src={`https://robohash.org/${index + zombie.name}?set=set1`}
-                alt="Zombie"
-                className="creature-image"
-              />
-              <h3 className="creature-name">{zombie.name}</h3>
-              <div className="creature-stats">
-                <div className="stat-item">
-                  <div className="stat-label">DNA</div>
-                  <div className="stat-value">{Number(zombie.dna)}</div>
-                </div>
-                <div className="stat-item">
-                  <div className="stat-label">Level</div>
-                  <div className="stat-value">{Number(zombie.level)}</div>
-                </div>
+            <div key={index} className="apple-card apple-fade-in-delay-3">
+              <div className="w-32 h-32 mx-auto mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20">
+                <img
+                  src={`https://robohash.org/${index + zombie.name}?set=set1`}
+                  alt="Zombie"
+                  className="apple-image w-full h-full object-cover"
+                />
               </div>
-              <div className="creature-meta">
-                Ready:{" "}
-                {new Date(Number(zombie.readyTime) * 1000).toLocaleString()}
-              </div>
-              <div className="creature-actions">
-                <button
-                  className="action-btn action-btn-level"
-                  onClick={() => levelUp(index)}
-                >
-                  Level Up
-                </button>
-                <button
-                  className="action-btn action-btn-rename"
-                  onClick={() => updateZombieName(index)}
-                >
-                  Rename
-                </button>
-                <button
-                  className="action-btn action-btn-dna"
-                  onClick={() => updateZombieDNA(index)}
-                >
-                  Update DNA
-                </button>
+              <div className="text-center">
+                <h3 className="apple-title">{zombie.name}</h3>
+                <div className="apple-stats">
+                  <div className="apple-stat">
+                    <div className="apple-stat-label">DNA</div>
+                    <div className="apple-stat-value">{Number(zombie.dna)}</div>
+                  </div>
+                  <div className="apple-stat">
+                    <div className="apple-stat-label">Level</div>
+                    <div className="apple-stat-value">{Number(zombie.level)}</div>
+                  </div>
+                </div>
+                <p className="apple-text text-xs mt-4 opacity-60">
+                  Ready: {new Date(Number(zombie.readyTime) * 1000).toLocaleString()}
+                </p>
+                <div className="apple-actions">
+                  <button
+                    className="apple-action-btn apple-ripple"
+                    onClick={() => levelUp(index)}
+                  >
+                    Level Up
+                  </button>
+                  <button
+                    className="apple-action-btn apple-ripple"
+                    onClick={() => updateZombieName(index)}
+                  >
+                    Rename
+                  </button>
+                  <button
+                    className="apple-action-btn apple-ripple"
+                    onClick={() => updateZombieDNA(index)}
+                  >
+                    Update DNA
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -338,25 +339,29 @@ const CryptoZombies = () => {
           {/* Display Kitties */}
           {kitties.length > 0 &&
             kitties.map((kitty) => (
-              <div key={kitty.id} className="creature-card fade-in-delay-3">
-                <img
-                  src={`https://robohash.org/${kitty.name + kitty.id}?set=set4`}
-                  alt="Kitty"
-                  className="creature-image"
-                />
-                <h3 className="creature-name">{kitty.name}</h3>
-                <div className="creature-stats">
-                  <div className="stat-item">
-                    <div className="stat-label">Generation</div>
-                    <div className="stat-value">{kitty.generation}</div>
-                  </div>
-                  <div className="stat-item">
-                    <div className="stat-label">Color</div>
-                    <div className="stat-value">{kitty.color}</div>
-                  </div>
+              <div key={kitty.id} className="apple-card apple-fade-in-delay-3">
+                <div className="w-32 h-32 mx-auto mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-pink-500/20 to-blue-500/20">
+                  <img
+                    src={`https://robohash.org/${kitty.name + kitty.id}?set=set4`}
+                    alt="Kitty"
+                    className="apple-image w-full h-full object-cover"
+                  />
                 </div>
-                <div className="creature-meta">
-                  Birthday: {new Date(kitty.birthday).toLocaleDateString()}
+                <div className="text-center">
+                  <h3 className="apple-title">{kitty.name}</h3>
+                  <div className="apple-stats">
+                    <div className="apple-stat">
+                      <div className="apple-stat-label">Generation</div>
+                      <div className="apple-stat-value">{kitty.generation}</div>
+                    </div>
+                    <div className="apple-stat">
+                      <div className="apple-stat-label">Color</div>
+                      <div className="apple-stat-value">{kitty.color}</div>
+                    </div>
+                  </div>
+                  <p className="apple-text text-xs mt-4 opacity-60">
+                    Birthday: {new Date(kitty.birthday).toLocaleDateString()}
+                  </p>
                 </div>
               </div>
             ))}
