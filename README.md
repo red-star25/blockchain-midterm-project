@@ -3,9 +3,9 @@
 
 ### Team Maember: 
 
-#### 1. Anuj More       - <Email>   -  <GitHub>     
-#### 2. Druv Nakum      - <Email>   -  <GitHub>  
-#### 3. Ishan Jawade    - ishanjawade@csu.fullerton.edu  -  <a href="https://github.com/IshanJawade" target="_blank">IshanJawade</a>
+#### 1. Anuj Chandrakant More   - 884437708  - anuj.more@csu.fullerton.edu  -  <a href="https://github.com/OfficialAnujMore" target="_blank">GitHub</a>    
+#### 2. Druv Nakum              - CWID       - dhruv.nakum25@gmail.com      -  <a href="https://github.com/https://github.com/red-star25" target="_blank">GitHub</a>  
+#### 3. Ishan Jawade            - 885186304 - ishanjawade@csu.fullerton.edu -  <a href="https://github.com/IshanJawade" target="_blank">GitHub</a>
 
 # CryptoZombies — Local Development README
 
