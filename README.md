@@ -5,7 +5,7 @@
 
 #### 1. Anuj More       - <Email>   -  <GitHub>     
 #### 2. Druv Nakum      - <Email>   -  <GitHub>  
-#### 3. Ishan Jawade    - <Email>   -  <GitHub>  
+#### 3. Ishan Jawade    - ishanjawade@csu.fullerton.edu  -  <a href="https://github.com/IshanJawade" target="_blank">IshanJawade</a>
 
 # CryptoZombies — Local Development README
 
