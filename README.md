@@ -1,11 +1,11 @@
 # CryptoZombies - Midterm Project 
 ## CPSC - 559 (Advanced Blockchain Technologies)
 
-### Team Maember: 
+### Team Maembers: 
 
-#### 1. Anuj Chandrakant More   - 884437708  - anuj.more@csu.fullerton.edu  -  <a href="https://github.com/OfficialAnujMore" target="_blank">GitHub</a>    
-#### 2. Druv Nakum              - CWID       - dhruv.nakum25@gmail.com      -  <a href="https://github.com/https://github.com/red-star25" target="_blank">GitHub</a>  
-#### 3. Ishan Jawade            - 885186304 - ishanjawade@csu.fullerton.edu -  <a href="https://github.com/IshanJawade" target="_blank">GitHub</a>
+1. Anuj Chandrakant More  - 884437708  - anuj.more@csu.fullerton.edu   - [GitHub](https://github.com/OfficialAnujMore)
+2. Druv Nakum             - CWID       - dhruv.nakum25@gmail.com       - [GitHub](https://github.com/red-star25)
+3. Ishan Jawade           - 885186304  - ishanjawade@csu.fullerton.edu - [GitHub](https://github.com/IshanJawade)
 
 # CryptoZombies — Local Development README
 
