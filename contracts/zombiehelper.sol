@@ -22,11 +22,17 @@ contract ZombieHelper is ZombieFeeding {
     function levelUp(uint _zombieId) external payable {
         require(msg.value == levelUpFee);
         zombies[_zombieId].level = zombies[_zombieId].level.add(1);
+        
+        // Update DNA based on new level
+        zombies[_zombieId].dna = _generateDnaFromNameAndLevel(zombies[_zombieId].name, zombies[_zombieId].level);
     }
 
     function levelDown(uint _zombieId) external payable {
         require(msg.value == levelUpFee);
         zombies[_zombieId].level = zombies[_zombieId].level.sub(1);
+        
+        // Update DNA based on new level
+        zombies[_zombieId].dna = _generateDnaFromNameAndLevel(zombies[_zombieId].name, zombies[_zombieId].level);
     }
 
     function changeName(
@@ -34,6 +40,9 @@ contract ZombieHelper is ZombieFeeding {
         string _newName
     ) external aboveLevel(2, _zombieId) onlyOwnerOf(_zombieId) {
         zombies[_zombieId].name = _newName;
+        
+        // Update DNA based on new name and current level
+        zombies[_zombieId].dna = _generateDnaFromNameAndLevel(_newName, zombies[_zombieId].level);
     }
 
     function changeDna(

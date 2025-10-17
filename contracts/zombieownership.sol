@@ -1,10 +1,10 @@
 pragma solidity ^0.4.25;
 
-import "./zombieattack.sol";
+import "./zombiebreeding.sol";
 import "./erc721.sol";
 import "./safemath.sol";
 
-contract ZombieOwnership is ZombieAttack, ERC721 {
+contract ZombieOwnership is ZombieBreeding, ERC721 {
 
   using SafeMath for uint256;
 

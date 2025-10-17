@@ -36,16 +36,28 @@ contract ZombieFactory is Ownable {
     emit NewZombie(id, _name, _dna);
   }
 
-  function _generateRandomDna(string _str) private view returns (uint) {
-    uint rand = uint(keccak256(abi.encodePacked(_str)));
-    return rand % dnaModulus;
+  function _generateDnaFromNameAndLevel(string _name, uint32 _level) internal view returns (uint) {
+    // Combine name and level for deterministic DNA generation
+    uint rand = uint(keccak256(abi.encodePacked(_name, _level)));
+    uint dna = rand % dnaModulus;
+    
+    // Ensure last 2 digits are 00 for random zombies
+    dna = dna - dna % 100;
+    
+    return dna;
   }
 
   function createRandomZombie(string _name) public {
     require(ownerZombieCount[msg.sender] < 6);
-    uint randDna = _generateRandomDna(_name);
-    randDna = randDna - randDna % 100;
-    _createZombie(_name, randDna);
+    uint32 initialLevel = 1;
+    uint dna = _generateDnaFromNameAndLevel(_name, initialLevel);
+    _createZombie(_name, dna);
+  }
+
+  // Function to get current DNA based on name and level
+  function getCurrentDna(uint _zombieId) public view returns (uint) {
+    Zombie storage zombie = zombies[_zombieId];
+    return _generateDnaFromNameAndLevel(zombie.name, zombie.level);
   }
 
 }

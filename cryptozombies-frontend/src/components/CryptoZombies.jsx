@@ -1,8 +1,56 @@
+import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import Web3 from "web3";
 import { getContractAddress } from "../config/contractAddresses";
 import cryptoZombiesABI from "../cryptozombies_abi.json";
 import "./CryptoZombie.css";
+
+// DNA-based zombie image generation
+const generateZombieImage = (dna) => {
+  let dnaStr = String(dna);
+
+  // Pad DNA with leading zeroes if it's less than 16 characters
+  while (dnaStr.length < 16) {
+    dnaStr = "0" + dnaStr;
+  }
+
+  const zombieDetails = {
+    // First 2 digits make up the head (7 possible heads)
+    headChoice: (parseInt(dnaStr.substring(0, 2)) % 7) + 1,
+    // 2nd 2 digits make up the eyes (11 variations)
+    eyeChoice: (parseInt(dnaStr.substring(2, 4)) % 11) + 1,
+    // 3rd 2 digits make up the shirt (6 variations)
+    shirtChoice: (parseInt(dnaStr.substring(4, 6)) % 6) + 1,
+    // Last 6 digits control color (360 degrees hue rotation)
+    skinColorChoice: (parseInt(dnaStr.substring(6, 8)) / 100) * 360,
+    eyeColorChoice: (parseInt(dnaStr.substring(8, 10)) / 100) * 360,
+    clothesColorChoice: (parseInt(dnaStr.substring(10, 12)) / 100) * 360,
+  };
+
+  // Use robohash with DNA-based parameters for consistent appearance
+  const dnaHash = `${zombieDetails.headChoice}${zombieDetails.eyeChoice}${
+    zombieDetails.shirtChoice
+  }${Math.floor(zombieDetails.skinColorChoice)}${Math.floor(
+    zombieDetails.eyeColorChoice
+  )}${Math.floor(zombieDetails.clothesColorChoice)}`;
+
+  return {
+    imageUrl: `https://robohash.org/${dnaHash}?set=set1&size=200x200`,
+    details: zombieDetails,
+  };
+};
+
+// Breeding Status Component
+const BreedingStatus = () => {
+  return (
+    <div className="breeding-status breeding-ready">🧬 Ready to breed</div>
+  );
+};
+
+BreedingStatus.propTypes = {
+  zombieId: PropTypes.number.isRequired,
+  cryptoZombies: PropTypes.object.isRequired,
+};
 
 const CryptoZombies = () => {
   const [web3, setWeb3] = useState(null);
@@ -11,6 +59,9 @@ const CryptoZombies = () => {
   const [zombies, setZombies] = useState([]);
   const [kitties, setKitties] = useState([]); // Store created kitties here
   const [status, setStatus] = useState("");
+  const breedingFee = "0.002"; // Breeding fee in ETH
+  const [selectedZombies, setSelectedZombies] = useState([]); // For breeding selection
+  const [showBreedingModal, setShowBreedingModal] = useState(false);
   const zombieNameRef = useRef("");
   const kittyNameRef = useRef(""); // Kitty name input
 
@@ -71,7 +122,7 @@ const CryptoZombies = () => {
 
           // Initialize the contract instance for zombies
           const cryptoZombiesContract = new web3Instance.eth.Contract(
-            cryptoZombiesABI,
+            cryptoZombiesABI.abi, // Use the abi property from the JSON object
             getContractAddress("zombieOwnership") // Dynamic contract address
           );
 
@@ -104,6 +155,11 @@ const CryptoZombies = () => {
       return;
     }
 
+    if (!cryptoZombies || !userAccount) {
+      setStatus("Contract not loaded or wallet not connected");
+      return;
+    }
+
     try {
       setStatus("Creating zombie...");
 
@@ -130,7 +186,6 @@ const CryptoZombies = () => {
   };
 
   // Update Zombie Name
-  // Update Zombie Name
   const updateZombieName = async (zombieId) => {
     const newName = prompt("Enter new name for your zombie:", "");
     if (!newName) {
@@ -139,6 +194,7 @@ const CryptoZombies = () => {
     }
 
     try {
+      setStatus("Changing zombie name... DNA and appearance will update");
       // Call contract method to change the zombie name
       await cryptoZombies.methods
         .changeName(zombieId, newName)
@@ -148,7 +204,9 @@ const CryptoZombies = () => {
       fetchZombies(userAccount, cryptoZombies);
 
       // Set success message
-      setStatus(`Zombie name updated to ${newName}`);
+      setStatus(
+        `Zombie name updated to ${newName} - DNA and appearance updated!`
+      );
     } catch (error) {
       console.error("Error updating name:", error);
       setStatus("Failed to update zombie name");
@@ -158,11 +216,11 @@ const CryptoZombies = () => {
   const updateZombieDNA = async (zombieId, zombieLevel) => {
     // Check if zombie level is 20 or higher
     alert("Zombie level should be 20 or higher to update DNA");
-    if ((zombieLevel < 20) | 1) {
+    if ((zombieLevel < 1) | 1) {
       return;
     }
 
-    if (zombieLevel < 20) {
+    if (zombieLevel < 1) {
       window.scrollTo(0, 0); // Scroll to the top for the status message
       alert("Zombie level should be 20 or higher to update DNA");
       return;
@@ -223,12 +281,85 @@ const CryptoZombies = () => {
   };
 
   const levelUp = async (zombieId) => {
-    setStatus("Leveling up your Zombie");
+    if (!cryptoZombies || !userAccount) {
+      setStatus("Contract not loaded or wallet not connected");
+      return;
+    }
+
+    setStatus("Leveling up your Zombie... DNA and appearance will update");
     await cryptoZombies.methods
       .levelUp(zombieId)
       .send({ from: userAccount, value: web3.utils.toWei("0.001", "ether") });
     fetchZombies(userAccount, cryptoZombies); // Refresh zombies
-    setStatus("Power overwhelming! Zombie successfully leveled up");
+    setStatus(
+      "Power overwhelming! Zombie leveled up - DNA and appearance updated!"
+    );
+  };
+
+  // Breeding Functions
+  const selectZombieForBreeding = (zombieId) => {
+    if (selectedZombies.includes(zombieId)) {
+      setSelectedZombies(selectedZombies.filter((id) => id !== zombieId));
+    } else if (selectedZombies.length < 2) {
+      setSelectedZombies([...selectedZombies, zombieId]);
+    } else {
+      setStatus("You can only select 2 zombies for breeding");
+    }
+  };
+
+  const breedZombies = async () => {
+    if (selectedZombies.length !== 2) {
+      setStatus("Please select exactly 2 zombies to breed");
+      return;
+    }
+
+    if (!cryptoZombies || !userAccount) {
+      setStatus("Contract not loaded or wallet not connected");
+      return;
+    }
+
+    const [zombieId1, zombieId2] = selectedZombies;
+
+    // All zombies are always ready to breed - no need to check
+
+    try {
+      setStatus("Breeding zombies... This may take a moment");
+
+      const breedingFeeWei = web3.utils.toWei(breedingFee, "ether");
+
+      await cryptoZombies.methods.breedZombies(zombieId1, zombieId2).send({
+        from: userAccount,
+        value: breedingFeeWei,
+        gas: 500000, // Increased gas limit for breeding
+      });
+
+      // Clear selection and close modal
+      setSelectedZombies([]);
+      setShowBreedingModal(false);
+
+      // Refresh zombies to show the new offspring
+      fetchZombies(userAccount, cryptoZombies);
+      setStatus(
+        "Breeding successful! A new zombie offspring has been created!"
+      );
+    } catch (error) {
+      console.error("Error breeding zombies:", error);
+      setStatus(`Breeding failed: ${error.message}`);
+    }
+  };
+
+  const openBreedingModal = () => {
+    if (zombies.length < 2) {
+      setStatus("You need at least 2 zombies to breed");
+      return;
+    }
+    setShowBreedingModal(true);
+    setSelectedZombies([]);
+  };
+
+  const closeBreedingModal = () => {
+    setShowBreedingModal(false);
+    setSelectedZombies([]);
   };
 
   return (
@@ -241,14 +372,14 @@ const CryptoZombies = () => {
           </p>
         </div>
         {/* Network Switch Button */}
-        <div className="fade-in">
+        {/* <div className="fade-in">
           <button
             className="modern-btn modern-btn-primary"
             onClick={switchToGanacheNetwork}
           >
             Switch to Ganache Network
           </button>
-        </div>
+        </div> */}
 
         {/* Zombie Creation */}
         <div className="modern-form-group fade-in-delay-1">
@@ -282,10 +413,84 @@ const CryptoZombies = () => {
           </button>
         </div>
 
+        {/* Breeding Section */}
+        <div className="modern-form-group fade-in-delay-3">
+          <button
+            className="modern-btn modern-btn-primary"
+            onClick={openBreedingModal}
+            disabled={zombies.length < 2}
+          >
+            🧬 Breed Zombies ({breedingFee} ETH)
+          </button>
+        </div>
+
         {/* Status Message */}
         {status !== "" && (
           <div id="txStatus" className="modern-status">
             <p>{status}</p>
+          </div>
+        )}
+
+        {/* Breeding Modal */}
+        {showBreedingModal && (
+          <div className="breeding-modal-overlay">
+            <div className="breeding-modal">
+              <div className="breeding-modal-header">
+                <h2>🧬 Breed Your Zombies</h2>
+                <button className="close-btn" onClick={closeBreedingModal}>
+                  ×
+                </button>
+              </div>
+              <div className="breeding-modal-content">
+                <p className="breeding-info">
+                  Select 2 zombies to breed. The offspring will inherit traits
+                  from both parents.
+                  <br />
+                  <strong>Cost: {breedingFee} ETH</strong>
+                </p>
+                <div className="breeding-zombie-grid">
+                  {zombies.map((zombie, index) => (
+                    <div
+                      key={index}
+                      className={`breeding-zombie-card ${
+                        selectedZombies.includes(index) ? "selected" : ""
+                      }`}
+                      onClick={() => selectZombieForBreeding(index)}
+                    >
+                      <img
+                        key={`breeding-zombie-${index}-${zombie.dna}`}
+                        src={generateZombieImage(zombie.dna).imageUrl}
+                        alt="Zombie"
+                        className="breeding-zombie-image"
+                      />
+                      <h4>{zombie.name}</h4>
+                      <div className="breeding-zombie-stats">
+                        <div>Level: {Number(zombie.level)}</div>
+                        <div>DNA: {Number(zombie.dna)}</div>
+                      </div>
+                      {selectedZombies.includes(index) && (
+                        <div className="selected-indicator">✓ Selected</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className="breeding-modal-actions">
+                  <button
+                    className="modern-btn modern-btn-secondary"
+                    onClick={breedZombies}
+                    disabled={selectedZombies.length !== 2}
+                  >
+                    Breed Selected Zombies
+                  </button>
+                  <button
+                    className="modern-btn modern-btn-outline"
+                    onClick={closeBreedingModal}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -294,7 +499,8 @@ const CryptoZombies = () => {
           {zombies.map((zombie, index) => (
             <div key={index} className="creature-card fade-in-delay-3">
               <img
-                src={`https://robohash.org/${index + zombie.name}?set=set1`}
+                key={`zombie-${index}-${zombie.dna}`}
+                src={generateZombieImage(zombie.dna).imageUrl}
                 alt="Zombie"
                 className="creature-image"
               />
@@ -312,6 +518,12 @@ const CryptoZombies = () => {
               <div className="creature-meta">
                 Ready:{" "}
                 {new Date(Number(zombie.readyTime) * 1000).toLocaleString()}
+              </div>
+              <div className="breeding-status-container">
+                <BreedingStatus
+                  zombieId={index}
+                  cryptoZombies={cryptoZombies}
+                />
               </div>
               <div className="creature-actions">
                 <button

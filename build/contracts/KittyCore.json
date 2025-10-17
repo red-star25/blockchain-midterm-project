@@ -110,7 +110,7 @@
   "sourceMap": "26:1070:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:1070:0;;;;;;;",
   "deployedSourceMap": "26:1070:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;507:85;;8:9:-1;5:2;;;30:1;27;20:12;5:2;507:85:0;;;;;;;;;;;;;;;;;;;;;;;;;;98:22;;8:9:-1;5:2;;;30:1;27;20:12;5:2;98:22:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;355:146;;8:9:-1;5:2;;;30:1;27;20:12;5:2;355:146:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;598:496;;8:9:-1;5:2;;;30:1;27;20:12;5:2;598:496:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;507:85;560:7;573:11;;;;;;;;;579:4;573:11;;;560:25;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;560:25:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;507:85;:::o;98:22::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;355:146::-;420:15;438:25;457:5;438:18;:25::i;:::-;420:43;;473:21;486:7;473:12;:21::i;:::-;355:146;;:::o;598:496::-;661:16;687:12;709:21;740:20;770;800:17;827:16;853:14;877:18;905:13;1011:7;1019:3;1011:12;;;;;;;;;;;;;;;;;:16;;;1003:24;;1045:5;1052:4;1058:1;1061;1064;1067:3;1072:1;1075;1078;1081:5;1037:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;598:496;;;;;;;;;;;:::o;127:222::-;197:7;216:12;266:4;249:22;;;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;51:19;36:153;;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;249:22:0;;;;;;;;;;;49:4:-1;39:7;30;26:21;22:32;13:7;6:49;249:22:0;;;239:33;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;51:19;36:153;;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;239:33:0;;;;;;;;;;;;;;;;231:42;;;216:57;;298:8;290:4;:17;;;;;;;;283:24;;127:222;;;;:::o",
   "source": "pragma solidity ^0.4.25;\n\ncontract KittyCore {\n    struct Kitty {\n        uint256 dna;\n    }\n\n    Kitty[] public kitties;\n\n    function _generateRandomDna(string memory _str) private pure returns (uint256) {\n        uint256 rand = uint256(keccak256(abi.encodePacked(_str)));\n        return rand % (10 ** 16); // Ensure DNA is a 16-digit number\n    }\n\n    function createRandomKitty(string memory _name) public {\n        uint256 randDna = _generateRandomDna(_name);\n        _createKitty(randDna);\n    }\n\n    function _createKitty(uint256 _dna) public {\n        kitties.push(Kitty(_dna));\n    }\n\n    function getKitty(uint256 _id) external view returns (\n        bool isGestating,\n        bool isReady,\n        uint256 cooldownIndex,\n        uint256 nextActionAt,\n        uint256 siringWithId,\n        uint256 birthTime,\n        uint256 matronId,\n        uint256 sireId,\n        uint256 generation,\n        uint256 genes\n    ) {\n        // Simplified response for compatibility with ZombieFeeding\n        genes = kitties[_id].dna;\n        return (false, true, 0, 0, 0, now, 0, 0, 0, genes);\n    }\n}\n",
-  "sourcePath": "/Users/dhruvnakum/SEM 3/Blockchain/crypto-zombies-blockchain-midterm/contracts/KittyCore.sol",
+  "sourcePath": "/Users/dhruvnakum/SEM 3/Blockchain/midterm-project/blockchain-midterm-project/contracts/KittyCore.sol",
   "ast": {
     "absolutePath": "project:/contracts/KittyCore.sol",
     "exportedSymbols": {
@@ -295,7 +295,7 @@
                                 "name": "abi",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1387,
+                                "referencedDeclaration": 1420,
                                 "src": "249:3:0",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_abi",
@@ -342,7 +342,7 @@
                           "name": "keccak256",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1394,
+                          "referencedDeclaration": 1427,
                           "src": "239:9:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -1158,7 +1158,7 @@
                         "name": "now",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1402,
+                        "referencedDeclaration": 1435,
                         "src": "1067:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1872,7 +1872,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1394,
+                                  "referencedDeclaration": 1427,
                                   "type": "function () pure returns (bytes32)",
                                   "value": "keccak256"
                                 },
@@ -1918,7 +1918,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1387,
+                                          "referencedDeclaration": 1420,
                                           "type": "abi",
                                           "value": "abi"
                                         },
@@ -3025,7 +3025,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1402,
+                              "referencedDeclaration": 1435,
                               "type": "uint256",
                               "value": "now"
                             },
@@ -3136,8 +3136,8 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xe1C9b736347edbF5F1b6e9e52B1F2BE0e2a5Fd09",
-      "transactionHash": "0x4ef7dcce82d8e9434f2c48760b9a43a0cf7d2a879049af36219c23dbf53fddc5"
+      "address": "0x22C23a20437Cb9EbeDBCDC97cB43d199f4D3E49D",
+      "transactionHash": "0xab4b2f1d83b90b37c6b453723a7c95dd6d70d4595c80fc1bac5f8e17f9476e4c"
     },
     "1760648217355": {
       "events": {},
@@ -3147,7 +3147,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-10-16T22:28:16.938Z",
+  "updatedAt": "2025-10-17T23:30:04.601Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

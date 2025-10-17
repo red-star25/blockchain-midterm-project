@@ -505,3 +505,202 @@
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
   animation: pulse 0.5s ease-in-out 3;
 }
+
+/* Breeding Modal Styles */
+.breeding-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.breeding-modal {
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideIn 0.4s ease-out;
+}
+
+.breeding-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.breeding-modal-header h2 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: var(--background-dark);
+  color: var(--text-primary);
+}
+
+.breeding-modal-content {
+  padding: 1.5rem;
+}
+
+.breeding-info {
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.breeding-zombie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.breeding-zombie-card {
+  background: var(--background-dark);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.breeding-zombie-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.breeding-zombie-card.selected {
+  border-color: var(--secondary-color);
+  background: rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.breeding-zombie-image {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  margin: 0 auto 0.75rem;
+  display: block;
+}
+
+.breeding-zombie-card h4 {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.breeding-zombie-stats {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+.selected-indicator {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--secondary-color);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.breeding-modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Breeding Status Indicators */
+.breeding-status-container {
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.breeding-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.breeding-ready {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
+
+.breeding-cooldown {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+/* Breeding Button Enhancements */
+.modern-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.modern-btn:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Responsive Breeding Modal */
+@media (max-width: 768px) {
+  .breeding-modal {
+    width: 95%;
+    margin: 1rem;
+  }
+  
+  .breeding-zombie-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  
+  .breeding-modal-actions {
+    flex-direction: column;
+  }
+  
+  .breeding-modal-actions .modern-btn {
+    width: 100%;
+  }
+}
