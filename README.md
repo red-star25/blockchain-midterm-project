@@ -4,7 +4,7 @@
 ### Team Maembers: 
 
 1. Anuj Chandrakant More  - 884437708  - anuj.more@csu.fullerton.edu   - [GitHub](https://github.com/OfficialAnujMore)
-2. Druv Nakum             - CWID       - dhruv.nakum25@gmail.com       - [GitHub](https://github.com/red-star25)
+2. Dhruv Jitendrabhai Nakum - 807483318  - dhruvnakum@csu.fullerton.edu    - [GitHub](https://github.com/red-star25)
 3. Ishan Jawade           - 885186304  - ishanjawade@csu.fullerton.edu - [GitHub](https://github.com/IshanJawade)
 
 # CryptoZombies — Local Development README
