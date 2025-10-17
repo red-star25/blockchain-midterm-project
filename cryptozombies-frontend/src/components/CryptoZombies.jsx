@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Web3 from "web3";
+import { getContractAddress } from "../config/contractAddresses";
 import cryptoZombiesABI from "../cryptozombies_abi.json";
 import "./CryptoZombie.css";
 
@@ -71,7 +72,7 @@ const CryptoZombies = () => {
           // Initialize the contract instance for zombies
           const cryptoZombiesContract = new web3Instance.eth.Contract(
             cryptoZombiesABI,
-            "0x5d9f4035D4D8408a503CDC388D60A8c012d618Ce" // ZombieOwnership contract address
+            getContractAddress("zombieOwnership") // Dynamic contract address
           );
 
           setCryptoZombies(cryptoZombiesContract);
@@ -181,7 +182,7 @@ const CryptoZombies = () => {
         params: [
           {
             from: userAccount,
-            to: "0x5d9f4035D4D8408a503CDC388D60A8c012d618Ce",
+            to: getContractAddress("zombieOwnership"), // Dynamic contract address
             data: cryptoZombies.methods.changeDna(zombieId, dna).encodeABI(),
           },
         ],

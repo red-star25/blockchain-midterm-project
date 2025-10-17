@@ -1,0 +1,23 @@
+// Contract addresses configuration
+// This file is automatically updated when contracts are deployed
+
+const contractAddresses = {
+  zombieOwnership: "0x3a6a6F2662C3a82A0779c0f365795E05Ce704dC2",
+  zombieFactory: "0xaA20e26231bC4c3002BB01816e83A6cc33337Bde",
+  zombieFeeding: "0xbBdB533E3b3a3A1e76f13503ed0D7d7F322AABac",
+  zombieHelper: "0x5c3CBf2ac7d446F55d78442Ce87D4b9c8a81C130",
+  zombieAttack: "0x3273051461d4F73a26B4195de6052FC3463376bb",
+  kittyCore: "0xe1C9b736347edbF5F1b6e9e52B1F2BE0e2a5Fd09",
+};
+
+// Function to get contract address by name
+export const getContractAddress = (contractName) => {
+  return contractAddresses[contractName];
+};
+
+// Function to update contract addresses (used by deployment scripts)
+export const updateContractAddresses = (newAddresses) => {
+  Object.assign(contractAddresses, newAddresses);
+};
+
+export default contractAddresses;
