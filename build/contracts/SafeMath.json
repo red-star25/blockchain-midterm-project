@@ -7,7 +7,7 @@
   "sourceMap": "116:1021:4:-;;132:2:-1;166:7;155:9;146:7;137:37;252:7;246:14;243:1;238:23;232:4;229:33;270:1;265:20;;;;222:63;;265:20;274:9;222:63;;298:9;295:1;288:20;328:4;319:7;311:22;352:7;343;336:24",
   "deployedSourceMap": "116:1021:4:-;;;;;;;;",
   "source": "pragma solidity ^0.4.25;\n\n/**\n * @title SafeMath\n * @dev Math operations with safety checks that throw on error\n */\nlibrary SafeMath {\n\n  /**\n  * @dev Multiplies two numbers, throws on overflow.\n  */\n  function mul(uint256 a, uint256 b) internal pure returns (uint256) {\n    if (a == 0) {\n      return 0;\n    }\n    uint256 c = a * b;\n    assert(c / a == b);\n    return c;\n  }\n\n  /**\n  * @dev Integer division of two numbers, truncating the quotient.\n  */\n  function div(uint256 a, uint256 b) internal pure returns (uint256) {\n    // assert(b > 0); // Solidity automatically throws when dividing by 0\n    uint256 c = a / b;\n    // assert(a == b * c + a % b); // There is no case in which this doesn't hold\n    return c;\n  }\n\n  /**\n  * @dev Subtracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).\n  */\n  function sub(uint256 a, uint256 b) internal pure returns (uint256) {\n    assert(b <= a);\n    return a - b;\n  }\n\n  /**\n  * @dev Adds two numbers, throws on overflow.\n  */\n  function add(uint256 a, uint256 b) internal pure returns (uint256) {\n    uint256 c = a + b;\n    assert(c >= a);\n    return c;\n  }\n}\n\n/**\n * @title SafeMath32\n * @dev SafeMath library implemented for uint32\n */\nlibrary SafeMath32 {\n\n  function mul(uint32 a, uint32 b) internal pure returns (uint32) {\n    if (a == 0) {\n      return 0;\n    }\n    uint32 c = a * b;\n    assert(c / a == b);\n    return c;\n  }\n\n  function div(uint32 a, uint32 b) internal pure returns (uint32) {\n    // assert(b > 0); // Solidity automatically throws when dividing by 0\n    uint32 c = a / b;\n    // assert(a == b * c + a % b); // There is no case in which this doesn't hold\n    return c;\n  }\n\n  function sub(uint32 a, uint32 b) internal pure returns (uint32) {\n    assert(b <= a);\n    return a - b;\n  }\n\n  function add(uint32 a, uint32 b) internal pure returns (uint32) {\n    uint32 c = a + b;\n    assert(c >= a);\n    return c;\n  }\n}\n\n/**\n * @title SafeMath16\n * @dev SafeMath library implemented for uint16\n */\nlibrary SafeMath16 {\n\n  function mul(uint16 a, uint16 b) internal pure returns (uint16) {\n    if (a == 0) {\n      return 0;\n    }\n    uint16 c = a * b;\n    assert(c / a == b);\n    return c;\n  }\n\n  function div(uint16 a, uint16 b) internal pure returns (uint16) {\n    // assert(b > 0); // Solidity automatically throws when dividing by 0\n    uint16 c = a / b;\n    // assert(a == b * c + a % b); // There is no case in which this doesn't hold\n    return c;\n  }\n\n  function sub(uint16 a, uint16 b) internal pure returns (uint16) {\n    assert(b <= a);\n    return a - b;\n  }\n\n  function add(uint16 a, uint16 b) internal pure returns (uint16) {\n    uint16 c = a + b;\n    assert(c >= a);\n    return c;\n  }\n}\n",
-  "sourcePath": "/Users/dhruvnakum/SEM 3/Blockchain/midterm-project/blockchain-midterm-project/contracts/safemath.sol",
+  "sourcePath": "/Users/ishan/Desktop/BlockChain/blockchain-midterm-project/contracts/safemath.sol",
   "ast": {
     "absolutePath": "project:/contracts/safemath.sol",
     "exportedSymbols": {
@@ -315,7 +315,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1422,
+                      "referencedDeclaration": 1943,
                       "src": "338:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -750,7 +750,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1422,
+                      "referencedDeclaration": 1943,
                       "src": "907:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -1083,7 +1083,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1422,
+                      "referencedDeclaration": 1943,
                       "src": "1102:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -1520,7 +1520,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1422,
+                      "referencedDeclaration": 1943,
                       "src": "1372:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -1955,7 +1955,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1422,
+                      "referencedDeclaration": 1943,
                       "src": "1748:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -2288,7 +2288,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1422,
+                      "referencedDeclaration": 1943,
                       "src": "1881:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -2725,7 +2725,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1422,
+                      "referencedDeclaration": 1943,
                       "src": "2151:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -3160,7 +3160,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1422,
+                      "referencedDeclaration": 1943,
                       "src": "2527:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -3493,7 +3493,7 @@
                       "name": "assert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1422,
+                      "referencedDeclaration": 1943,
                       "src": "2660:6:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
@@ -4020,7 +4020,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1422,
+                              "referencedDeclaration": 1943,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
@@ -4524,7 +4524,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1422,
+                              "referencedDeclaration": 1943,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
@@ -4883,7 +4883,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1422,
+                              "referencedDeclaration": 1943,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
@@ -5326,7 +5326,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1422,
+                              "referencedDeclaration": 1943,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
@@ -5830,7 +5830,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1422,
+                              "referencedDeclaration": 1943,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
@@ -6189,7 +6189,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1422,
+                              "referencedDeclaration": 1943,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
@@ -6632,7 +6632,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1422,
+                              "referencedDeclaration": 1943,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
@@ -7136,7 +7136,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1422,
+                              "referencedDeclaration": 1943,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
@@ -7495,7 +7495,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1422,
+                              "referencedDeclaration": 1943,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
@@ -7613,8 +7613,8 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x8278f4F1452c22898EaeE75C215A01c3Fa018CF7",
-      "transactionHash": "0x06124c404e522ae5f72f1626159b422b7aa63d2b0ecf8b9ecdb7400f996d88e7"
+      "address": "0xA5924B2069ffee481E968D60471F34fF24f4B816",
+      "transactionHash": "0x622361298d354eceab3e2c3afc1771e7fdda1de1842c2f240199253a924018ef"
     },
     "1760648217355": {
       "events": {},
@@ -7624,7 +7624,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-10-18T00:28:19.284Z",
+  "updatedAt": "2025-10-18T20:22:09.446Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {},

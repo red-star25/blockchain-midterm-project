@@ -667,6 +667,20 @@
   border: 1px solid var(--secondary-color);
 }
 
+.breeding-locked {
+  background: rgba(100, 116, 139, 0.2);
+  color: var(--text-muted);
+  border: 1px dashed var(--border-color);
+}
+
+.modal-section-title {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 1.5rem 0 0.75rem;
+}
+
 .breeding-cooldown {
   background: rgba(245, 158, 11, 0.2);
   color: var(--accent-color);

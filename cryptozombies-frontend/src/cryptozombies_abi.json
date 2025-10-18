@@ -53,6 +53,24 @@
       "type": "function"
     },
     {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_zombieId",
+          "type": "uint256"
+        },
+        {
+          "name": "_kittyId",
+          "type": "uint256"
+        }
+      ],
+      "name": "feedZombieWithKitty",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "constant": true,
       "inputs": [
         {
@@ -448,6 +466,28 @@
         }
       ],
       "name": "ZombieBreeding",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "zombieId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "kittyId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "newLevel",
+          "type": "uint32"
+        }
+      ],
+      "name": "ZombieFed",
       "type": "event"
     },
     {
