@@ -373,7 +373,7 @@
         "id": 560,
         "nodeType": "ImportDirective",
         "scope": 695,
-        "sourceUnit": 1634,
+        "sourceUnit": 1632,
         "src": "26:28:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -387,10 +387,10 @@
               "id": 561,
               "name": "ZombieHelper",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1633,
+              "referencedDeclaration": 1631,
               "src": "81:12:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ZombieHelper_$1633",
+                "typeIdentifier": "t_contract$_ZombieHelper_$1631",
                 "typeString": "contract ZombieHelper"
               }
             },
@@ -401,9 +401,9 @@
         ],
         "contractDependencies": [
           267,
-          1210,
-          1378,
-          1633
+          1208,
+          1376,
+          1631
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -411,9 +411,9 @@
         "id": 694,
         "linearizedBaseContracts": [
           694,
-          1633,
-          1378,
-          1210,
+          1631,
+          1376,
+          1208,
           267
         ],
         "name": "ZombieAttack",
@@ -641,7 +641,7 @@
                                   "name": "now",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1793,
+                                  "referencedDeclaration": 1791,
                                   "src": "293:3:4",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint256",
@@ -656,7 +656,7 @@
                                     "name": "msg",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 1791,
+                                    "referencedDeclaration": 1789,
                                     "src": "298:3:4",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_magic_message",
@@ -712,7 +712,7 @@
                                   "name": "abi",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1778,
+                                  "referencedDeclaration": 1776,
                                   "src": "276:3:4",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_magic_abi",
@@ -759,7 +759,7 @@
                             "name": "keccak256",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1785,
+                            "referencedDeclaration": 1783,
                             "src": "266:9:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -945,7 +945,7 @@
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                        "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                         "typeString": "struct ZombieFactory.Zombie"
                       },
                       "typeName": {
@@ -953,10 +953,10 @@
                         "id": 607,
                         "name": "Zombie",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1054,
+                        "referencedDeclaration": 1052,
                         "src": "428:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                          "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                           "typeString": "struct ZombieFactory.Zombie"
                         }
                       },
@@ -973,10 +973,10 @@
                       "name": "zombies",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1057,
+                      "referencedDeclaration": 1055,
                       "src": "454:7:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_array$_t_struct$_Zombie_$1054_storage_$dyn_storage",
+                        "typeIdentifier": "t_array$_t_struct$_Zombie_$1052_storage_$dyn_storage",
                         "typeString": "struct ZombieFactory.Zombie storage ref[] storage ref"
                       }
                     },
@@ -1001,7 +1001,7 @@
                     "nodeType": "IndexAccess",
                     "src": "454:18:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Zombie_$1054_storage",
+                      "typeIdentifier": "t_struct$_Zombie_$1052_storage",
                       "typeString": "struct ZombieFactory.Zombie storage ref"
                     }
                   },
@@ -1023,7 +1023,7 @@
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                        "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                         "typeString": "struct ZombieFactory.Zombie"
                       },
                       "typeName": {
@@ -1031,10 +1031,10 @@
                         "id": 613,
                         "name": "Zombie",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1054,
+                        "referencedDeclaration": 1052,
                         "src": "478:6:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                          "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                           "typeString": "struct ZombieFactory.Zombie"
                         }
                       },
@@ -1051,10 +1051,10 @@
                       "name": "zombies",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1057,
+                      "referencedDeclaration": 1055,
                       "src": "507:7:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_array$_t_struct$_Zombie_$1054_storage_$dyn_storage",
+                        "typeIdentifier": "t_array$_t_struct$_Zombie_$1052_storage_$dyn_storage",
                         "typeString": "struct ZombieFactory.Zombie storage ref[] storage ref"
                       }
                     },
@@ -1079,7 +1079,7 @@
                     "nodeType": "IndexAccess",
                     "src": "507:18:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Zombie_$1054_storage",
+                      "typeIdentifier": "t_struct$_Zombie_$1052_storage",
                       "typeString": "struct ZombieFactory.Zombie storage ref"
                     }
                   },
@@ -1246,7 +1246,7 @@
                               "referencedDeclaration": 608,
                               "src": "839:8:4",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                 "typeString": "struct ZombieFactory.Zombie storage pointer"
                               }
                             },
@@ -1257,7 +1257,7 @@
                             "lValueRequested": true,
                             "memberName": "lossCount",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1053,
+                            "referencedDeclaration": 1051,
                             "src": "839:18:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint16",
@@ -1306,7 +1306,7 @@
                                   "referencedDeclaration": 608,
                                   "src": "860:8:4",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                    "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                     "typeString": "struct ZombieFactory.Zombie storage pointer"
                                   }
                                 },
@@ -1317,7 +1317,7 @@
                                 "lValueRequested": false,
                                 "memberName": "lossCount",
                                 "nodeType": "MemberAccess",
-                                "referencedDeclaration": 1053,
+                                "referencedDeclaration": 1051,
                                 "src": "860:18:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint16",
@@ -1381,7 +1381,7 @@
                               "referencedDeclaration": 614,
                               "src": "893:11:4",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                 "typeString": "struct ZombieFactory.Zombie storage pointer"
                               }
                             },
@@ -1392,7 +1392,7 @@
                             "lValueRequested": true,
                             "memberName": "winCount",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1051,
+                            "referencedDeclaration": 1049,
                             "src": "893:20:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint16",
@@ -1441,7 +1441,7 @@
                                   "referencedDeclaration": 614,
                                   "src": "916:11:4",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                    "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                     "typeString": "struct ZombieFactory.Zombie storage pointer"
                                   }
                                 },
@@ -1452,7 +1452,7 @@
                                 "lValueRequested": false,
                                 "memberName": "winCount",
                                 "nodeType": "MemberAccess",
-                                "referencedDeclaration": 1051,
+                                "referencedDeclaration": 1049,
                                 "src": "916:20:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint16",
@@ -1510,7 +1510,7 @@
                               "referencedDeclaration": 608,
                               "src": "968:8:4",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                 "typeString": "struct ZombieFactory.Zombie storage pointer"
                               }
                             }
@@ -1518,7 +1518,7 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                 "typeString": "struct ZombieFactory.Zombie storage pointer"
                               }
                             ],
@@ -1526,10 +1526,10 @@
                             "name": "_triggerCooldown",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1263,
+                            "referencedDeclaration": 1261,
                             "src": "951:16:4",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Zombie_$1054_storage_ptr_$returns$__$",
+                              "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Zombie_$1052_storage_ptr_$returns$__$",
                               "typeString": "function (struct ZombieFactory.Zombie storage pointer)"
                             }
                           },
@@ -1580,7 +1580,7 @@
                               "referencedDeclaration": 608,
                               "src": "607:8:4",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                 "typeString": "struct ZombieFactory.Zombie storage pointer"
                               }
                             },
@@ -1591,7 +1591,7 @@
                             "lValueRequested": true,
                             "memberName": "winCount",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1051,
+                            "referencedDeclaration": 1049,
                             "src": "607:17:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint16",
@@ -1640,7 +1640,7 @@
                                   "referencedDeclaration": 608,
                                   "src": "627:8:4",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                    "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                     "typeString": "struct ZombieFactory.Zombie storage pointer"
                                   }
                                 },
@@ -1651,7 +1651,7 @@
                                 "lValueRequested": false,
                                 "memberName": "winCount",
                                 "nodeType": "MemberAccess",
-                                "referencedDeclaration": 1051,
+                                "referencedDeclaration": 1049,
                                 "src": "627:17:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint16",
@@ -1715,7 +1715,7 @@
                               "referencedDeclaration": 608,
                               "src": "659:8:4",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                 "typeString": "struct ZombieFactory.Zombie storage pointer"
                               }
                             },
@@ -1726,7 +1726,7 @@
                             "lValueRequested": true,
                             "memberName": "level",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1047,
+                            "referencedDeclaration": 1045,
                             "src": "659:14:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint32",
@@ -1775,7 +1775,7 @@
                                   "referencedDeclaration": 608,
                                   "src": "676:8:4",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                    "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                     "typeString": "struct ZombieFactory.Zombie storage pointer"
                                   }
                                 },
@@ -1786,7 +1786,7 @@
                                 "lValueRequested": false,
                                 "memberName": "level",
                                 "nodeType": "MemberAccess",
-                                "referencedDeclaration": 1047,
+                                "referencedDeclaration": 1045,
                                 "src": "676:14:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint32",
@@ -1850,7 +1850,7 @@
                               "referencedDeclaration": 614,
                               "src": "705:11:4",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                 "typeString": "struct ZombieFactory.Zombie storage pointer"
                               }
                             },
@@ -1861,7 +1861,7 @@
                             "lValueRequested": true,
                             "memberName": "lossCount",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1053,
+                            "referencedDeclaration": 1051,
                             "src": "705:21:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint16",
@@ -1910,7 +1910,7 @@
                                   "referencedDeclaration": 614,
                                   "src": "729:11:4",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                    "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                     "typeString": "struct ZombieFactory.Zombie storage pointer"
                                   }
                                 },
@@ -1921,7 +1921,7 @@
                                 "lValueRequested": false,
                                 "memberName": "lossCount",
                                 "nodeType": "MemberAccess",
-                                "referencedDeclaration": 1053,
+                                "referencedDeclaration": 1051,
                                 "src": "729:21:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint16",
@@ -1994,7 +1994,7 @@
                                 "referencedDeclaration": 614,
                                 "src": "792:11:4",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                  "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                   "typeString": "struct ZombieFactory.Zombie storage pointer"
                                 }
                               },
@@ -2005,7 +2005,7 @@
                               "lValueRequested": false,
                               "memberName": "dna",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1045,
+                              "referencedDeclaration": 1043,
                               "src": "792:15:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -2050,7 +2050,7 @@
                             "name": "feedAndMultiply",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1352,
+                            "referencedDeclaration": 1350,
                             "src": "765:15:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$returns$__$",
@@ -2109,7 +2109,7 @@
                   "name": "onlyOwnerOf",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1233,
+                  "referencedDeclaration": 1231,
                   "src": "399:11:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_uint256_$",
@@ -2226,7 +2226,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 1634,
+          "SourceUnit": 1632,
           "absolutePath": "project:/contracts/zombiehelper.sol",
           "file": "./zombiehelper.sol",
           "scope": 695,
@@ -2243,18 +2243,18 @@
         "attributes": {
           "contractDependencies": [
             267,
-            1210,
-            1378,
-            1633
+            1208,
+            1376,
+            1631
           ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             694,
-            1633,
-            1378,
-            1210,
+            1631,
+            1376,
+            1208,
             267
           ],
           "name": "ZombieAttack",
@@ -2270,7 +2270,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "ZombieHelper",
-                  "referencedDeclaration": 1633,
+                  "referencedDeclaration": 1631,
                   "type": "contract ZombieHelper"
                 },
                 "id": 561,
@@ -2641,7 +2641,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1785,
+                                      "referencedDeclaration": 1783,
                                       "type": "function () pure returns (bytes32)",
                                       "value": "keccak256"
                                     },
@@ -2695,7 +2695,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1778,
+                                              "referencedDeclaration": 1776,
                                               "type": "abi",
                                               "value": "abi"
                                             },
@@ -2714,7 +2714,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 1793,
+                                          "referencedDeclaration": 1791,
                                           "type": "uint256",
                                           "value": "now"
                                         },
@@ -2740,7 +2740,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 1791,
+                                              "referencedDeclaration": 1789,
                                               "type": "msg",
                                               "value": "msg"
                                             },
@@ -2908,7 +2908,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 1233,
+                      "referencedDeclaration": 1231,
                       "type": "modifier (uint256)",
                       "value": "onlyOwnerOf"
                     },
@@ -2960,7 +2960,7 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "Zombie",
-                              "referencedDeclaration": 1054,
+                              "referencedDeclaration": 1052,
                               "type": "struct ZombieFactory.Zombie"
                             },
                             "id": 607,
@@ -2988,7 +2988,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1057,
+                              "referencedDeclaration": 1055,
                               "type": "struct ZombieFactory.Zombie storage ref[] storage ref",
                               "value": "zombies"
                             },
@@ -3043,7 +3043,7 @@
                             "attributes": {
                               "contractScope": null,
                               "name": "Zombie",
-                              "referencedDeclaration": 1054,
+                              "referencedDeclaration": 1052,
                               "type": "struct ZombieFactory.Zombie"
                             },
                             "id": 613,
@@ -3071,7 +3071,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1057,
+                              "referencedDeclaration": 1055,
                               "type": "struct ZombieFactory.Zombie storage ref[] storage ref",
                               "value": "zombies"
                             },
@@ -3270,7 +3270,7 @@
                                       "isPure": false,
                                       "lValueRequested": true,
                                       "member_name": "winCount",
-                                      "referencedDeclaration": 1051,
+                                      "referencedDeclaration": 1049,
                                       "type": "uint16"
                                     },
                                     "children": [
@@ -3333,7 +3333,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "winCount",
-                                              "referencedDeclaration": 1051,
+                                              "referencedDeclaration": 1049,
                                               "type": "uint16"
                                             },
                                             "children": [
@@ -3414,7 +3414,7 @@
                                       "isPure": false,
                                       "lValueRequested": true,
                                       "member_name": "level",
-                                      "referencedDeclaration": 1047,
+                                      "referencedDeclaration": 1045,
                                       "type": "uint32"
                                     },
                                     "children": [
@@ -3477,7 +3477,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "level",
-                                              "referencedDeclaration": 1047,
+                                              "referencedDeclaration": 1045,
                                               "type": "uint32"
                                             },
                                             "children": [
@@ -3558,7 +3558,7 @@
                                       "isPure": false,
                                       "lValueRequested": true,
                                       "member_name": "lossCount",
-                                      "referencedDeclaration": 1053,
+                                      "referencedDeclaration": 1051,
                                       "type": "uint16"
                                     },
                                     "children": [
@@ -3621,7 +3621,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "lossCount",
-                                              "referencedDeclaration": 1053,
+                                              "referencedDeclaration": 1051,
                                               "type": "uint16"
                                             },
                                             "children": [
@@ -3717,7 +3717,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1352,
+                                      "referencedDeclaration": 1350,
                                       "type": "function (uint256,uint256,string memory)",
                                       "value": "feedAndMultiply"
                                     },
@@ -3747,7 +3747,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "dna",
-                                      "referencedDeclaration": 1045,
+                                      "referencedDeclaration": 1043,
                                       "type": "uint256"
                                     },
                                     "children": [
@@ -3825,7 +3825,7 @@
                                       "isPure": false,
                                       "lValueRequested": true,
                                       "member_name": "lossCount",
-                                      "referencedDeclaration": 1053,
+                                      "referencedDeclaration": 1051,
                                       "type": "uint16"
                                     },
                                     "children": [
@@ -3888,7 +3888,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "lossCount",
-                                              "referencedDeclaration": 1053,
+                                              "referencedDeclaration": 1051,
                                               "type": "uint16"
                                             },
                                             "children": [
@@ -3969,7 +3969,7 @@
                                       "isPure": false,
                                       "lValueRequested": true,
                                       "member_name": "winCount",
-                                      "referencedDeclaration": 1051,
+                                      "referencedDeclaration": 1049,
                                       "type": "uint16"
                                     },
                                     "children": [
@@ -4032,7 +4032,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "winCount",
-                                              "referencedDeclaration": 1051,
+                                              "referencedDeclaration": 1049,
                                               "type": "uint16"
                                             },
                                             "children": [
@@ -4113,14 +4113,14 @@
                                     "attributes": {
                                       "argumentTypes": [
                                         {
-                                          "typeIdentifier": "t_struct$_Zombie_$1054_storage_ptr",
+                                          "typeIdentifier": "t_struct$_Zombie_$1052_storage_ptr",
                                           "typeString": "struct ZombieFactory.Zombie storage pointer"
                                         }
                                       ],
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1263,
+                                      "referencedDeclaration": 1261,
                                       "type": "function (struct ZombieFactory.Zombie storage pointer)",
                                       "value": "_triggerCooldown"
                                     },
@@ -4230,8 +4230,8 @@
         }
       },
       "links": {},
-      "address": "0xA4e2Ce0437f150D68211710ff15FB5045179e7Cb",
-      "transactionHash": "0x7e015b0b332538fcc1d927f4c9540517d3917b2d873729867bcf32d60c1f7980"
+      "address": "0x5C339251626c855E3F1e13821dFC1df2BC2E24d5",
+      "transactionHash": "0x21f596bf044e4313a802873468acf6ba3fe1f770cecd52a745c120a14737f278"
     },
     "1760648217355": {
       "events": {},
@@ -4241,7 +4241,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-10-17T23:30:04.592Z",
+  "updatedAt": "2025-10-18T00:28:19.295Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

@@ -27,15 +27,18 @@ const generateZombieImage = (dna) => {
     clothesColorChoice: (parseInt(dnaStr.substring(10, 12)) / 100) * 360,
   };
 
-  // Use robohash with DNA-based parameters for consistent appearance
+  // Create DNA hash for consistent appearance
   const dnaHash = `${zombieDetails.headChoice}${zombieDetails.eyeChoice}${
     zombieDetails.shirtChoice
   }${Math.floor(zombieDetails.skinColorChoice)}${Math.floor(
     zombieDetails.eyeColorChoice
   )}${Math.floor(zombieDetails.clothesColorChoice)}`;
 
+  // Use robohash for robot-like avatars
+  const imageUrl = `https://robohash.org/${dnaHash}?set=set2&size=200x200`;
+
   return {
-    imageUrl: `https://robohash.org/${dnaHash}?set=set1&size=200x200`,
+    imageUrl: imageUrl,
     details: zombieDetails,
   };
 };

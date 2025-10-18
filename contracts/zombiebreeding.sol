@@ -6,6 +6,9 @@ contract ZombieBreeding is ZombieHelper {
     
     uint breedingFee = 0.002 ether; // Cost to breed zombies
     
+    // Track offspring count for each parent pair
+    mapping(bytes32 => uint) public parentPairOffspringCount;
+    
     // Breeding events
     event ZombieBreeding(uint zombieId1, uint zombieId2, uint newZombieId);
     
@@ -52,9 +55,30 @@ contract ZombieBreeding is ZombieHelper {
         // Generate offspring DNA
         uint offspringDna = _generateOffspringDna(_zombieId1, _zombieId2);
         
-        // Create the offspring
+        // Create the offspring with combined parent names and counter
         uint newZombieId = zombies.length;
-        _createZombie("Offspring", offspringDna);
+        
+        // Create a unique key for this parent pair (order doesn't matter)
+        bytes32 parentPairKey;
+        if (_zombieId1 < _zombieId2) {
+            parentPairKey = keccak256(abi.encodePacked(_zombieId1, _zombieId2));
+        } else {
+            parentPairKey = keccak256(abi.encodePacked(_zombieId2, _zombieId1));
+        }
+        
+        // Increment counter for this parent pair
+        parentPairOffspringCount[parentPairKey]++;
+        
+        // Create offspring name with counter
+        string memory offspringName = string(abi.encodePacked(
+            zombie1.name, 
+            "_", 
+            zombie2.name, 
+            "_", 
+            uint2str(parentPairOffspringCount[parentPairKey])
+        ));
+        
+        _createZombie(offspringName, offspringDna);
         
         emit ZombieBreeding(_zombieId1, _zombieId2, newZombieId);
     }
@@ -70,6 +94,26 @@ contract ZombieBreeding is ZombieHelper {
     
     function getBreedingFee() external view returns (uint) {
         return breedingFee;
+    }
+    
+    // Helper function to convert uint to string
+    function uint2str(uint _i) internal pure returns (string memory) {
+        if (_i == 0) {
+            return "0";
+        }
+        uint j = _i;
+        uint len;
+        while (j != 0) {
+            len++;
+            j /= 10;
+        }
+        bytes memory bstr = new bytes(len);
+        uint k = len - 1;
+        while (_i != 0) {
+            bstr[k--] = byte(uint8(48 + _i % 10));
+            _i /= 10;
+        }
+        return string(bstr);
     }
     
     // Function to get all zombies owned by a player (all are breedable)
