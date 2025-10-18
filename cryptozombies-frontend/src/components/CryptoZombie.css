@@ -667,6 +667,12 @@
   border: 1px solid var(--secondary-color);
 }
 
+.breeding-locked {
+  background: rgba(100, 116, 139, 0.2);
+  color: var(--text-muted);
+  border: 1px dashed var(--border-color);
+}
+
 .modal-section-title {
   font-size: 0.9rem;
   color: var(--text-muted);
