@@ -2,12 +2,12 @@
 // This file is automatically updated when contracts are deployed
 
 const contractAddresses = {
-  "zombieOwnership": "0xaA3BA316aa5Df45cB0E6Fa997112A288cb8e6A98",
-  "zombieFactory": "0xCb7a2C41dB2678973DcE62de321A8d8C268f4A64",
-  "zombieFeeding": "0xDBbA0F2211e13E536fAcAc00ED174A46084f9B04",
-  "zombieHelper": "0x8a199A4aF5887389D8B7D158f7008a6c1B567acA",
-  "zombieAttack": "0xddEA9d53B1254bB52aA22559AA163A9505b32446",
-  "kittyCore": "0x8BD70a815FAA94ab6C78F0b60900863179C1f6FC"
+  "zombieOwnership": "0xd0202E9F00C8e10E3EfF7cFa84fFFcAE6d3a6cfd",
+  "zombieFactory": "0x2842757536c55cc86b6d0D9Fbf9CAc539e877AEF",
+  "zombieFeeding": "0xbD32b45bd90bEFB58515ca3639b258B5502Fb55a",
+  "zombieHelper": "0x8dc55530Ced78565b85c5e759E1DcE6c43423816",
+  "zombieAttack": "0x88683aB873B13CBF74e0162D8710cC2E87dC205C",
+  "kittyCore": "0x7876f5F8eB5aF8A8118104A8Fd3992084F9822ac"
 };
 
 // Function to get contract address by name

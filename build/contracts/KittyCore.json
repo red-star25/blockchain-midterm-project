@@ -406,7 +406,7 @@
                                 "name": "abi",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2014,
+                                "referencedDeclaration": 2034,
                                 "src": "350:3:0",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_abi",
@@ -453,7 +453,7 @@
                           "name": "keccak256",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2021,
+                          "referencedDeclaration": 2041,
                           "src": "340:9:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_sha3_pure$__$returns$_t_bytes32_$",
@@ -1269,7 +1269,7 @@
                         "name": "now",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2029,
+                        "referencedDeclaration": 2049,
                         "src": "1168:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -2097,7 +2097,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2021,
+                                  "referencedDeclaration": 2041,
                                   "type": "function () pure returns (bytes32)",
                                   "value": "keccak256"
                                 },
@@ -2143,7 +2143,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 2014,
+                                          "referencedDeclaration": 2034,
                                           "type": "abi",
                                           "value": "abi"
                                         },
@@ -3250,7 +3250,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2029,
+                              "referencedDeclaration": 2049,
                               "type": "uint256",
                               "value": "now"
                             },
@@ -3361,8 +3361,8 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x0a5AA4B4A4aaa0Bd4B378a48C36944Da26376392",
-      "transactionHash": "0xa6aa06c6fffc90b303f2b0de196dc6750042cd613b9f16223462dc4e5eb9eb85"
+      "address": "0x7876f5F8eB5aF8A8118104A8Fd3992084F9822ac",
+      "transactionHash": "0x2fc0025b8f80f2f8381d8a54c39abc203a256a8c8ed1297d720d734878e17b56"
     },
     "1760648217355": {
       "events": {},
@@ -3372,7 +3372,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-10-18T07:25:53.797Z",
+  "updatedAt": "2025-10-18T20:22:09.467Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

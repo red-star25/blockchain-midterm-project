@@ -73,6 +73,65 @@ const CryptoZombies = () => {
   const zombieNameRef = useRef("");
   const kittyNameRef = useRef(""); // Kitty name input
 
+  const normalizeKittyData = (rawKitty, index, fallbackName) => {
+    if (!rawKitty) {
+      return {
+        id: index,
+        name: fallbackName ?? `Kitty ${index}`,
+        generation: 0,
+        birthday: Date.now(),
+        dna: "0",
+      };
+    }
+
+    // Web3 returns both array-style and key-based properties.
+    const genesValue =
+      rawKitty.genes ?? rawKitty.dna ?? rawKitty[9] ?? rawKitty[0] ?? "0";
+    const generationValue = rawKitty.generation ?? rawKitty[8] ?? 0;
+
+    return {
+      id: index,
+      name: fallbackName ?? rawKitty.name ?? `Kitty ${index}`,
+      generation: Number(generationValue) || 0,
+      birthday: Date.now(),
+      dna: genesValue.toString(),
+    };
+  };
+
+  const fetchKitties = async (contract) => {
+    if (!contract) {
+      return;
+    }
+
+    try {
+      const kittyCount = Number(await contract.methods.getKittyCount().call());
+
+      if (kittyCount === 0) {
+        setKitties([]);
+        return;
+      }
+
+      const kittyData = await Promise.all(
+        Array.from({ length: kittyCount }, (_, index) =>
+          contract.methods.getKitty(index).call()
+        )
+      );
+
+      setKitties((existingKitties) => {
+        const nameLookup = new Map(
+          existingKitties.map((kitty) => [kitty.id, kitty.name])
+        );
+
+        return kittyData.map((kitty, index) =>
+          normalizeKittyData(kitty, index, nameLookup.get(index))
+        );
+      });
+    } catch (error) {
+      console.error("Error fetching kitties:", error);
+      setStatus("Error fetching kitties");
+    }
+  };
+
   // Function to switch to Ganache network
   const switchToGanacheNetwork = async () => {
     try {
@@ -145,6 +204,7 @@ const CryptoZombies = () => {
 
           // Fetch the zombies and kitties owned by the user
           fetchZombies(accounts[0], cryptoZombiesContract);
+          fetchKitties(kittyCoreContract);
         } catch (error) {
           console.error("Could not connect to wallet", error);
         }
@@ -263,17 +323,12 @@ const CryptoZombies = () => {
 
       const kittyCount = await kittyContract.methods.getKittyCount().call();
       const kittyId = Number(kittyCount) - 1;
-      const kittyData = await kittyContract.methods.kitties(kittyId).call();
+      const kittyData = await kittyContract.methods.getKitty(kittyId).call();
 
-      const newKitty = {
-        id: kittyId,
-        name: name,
-        generation: 0,
-        birthday: Date.now(),
-        dna: kittyData.dna,
-      };
+      const newKitty = normalizeKittyData(kittyData, kittyId, name);
 
   setKitties((existingKitties) => [...existingKitties, newKitty]);
+  fetchKitties(kittyContract);
       kittyNameRef.current.value = "";
       setStatus("Kitty created successfully!");
     } catch (error) {
