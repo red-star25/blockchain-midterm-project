@@ -1,7 +1,7 @@
 # CryptoZombies - Midterm Project 
 ## CPSC - 559 (Advanced Blockchain Technologies)
 
-### Team Maembers: 
+### Team Members: 
 
 1. Anuj Chandrakant More  - 884437708  - anuj.more@csu.fullerton.edu   - [GitHub](https://github.com/OfficialAnujMore)
 2. Dhruv Jitendrabhai Nakum - 807483318  - dhruvnakum@csu.fullerton.edu    - [GitHub](https://github.com/red-star25)
