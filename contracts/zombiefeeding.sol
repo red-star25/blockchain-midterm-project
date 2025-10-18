@@ -22,6 +22,8 @@ contract ZombieFeeding is ZombieFactory {
 
   KittyCore kittyContract;
 
+  event ZombieFed(uint zombieId, uint kittyId, uint32 newLevel);
+
   modifier onlyOwnerOf(uint _zombieId) {
     require(msg.sender == zombieToOwner[_zombieId]);
     _;
@@ -52,8 +54,29 @@ contract ZombieFeeding is ZombieFactory {
   }
 
   function feedOnKitty(uint _zombieId, uint _kittyId) public {
+    require(address(kittyContract) != address(0));
     uint kittyDna;
     (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);
     feedAndMultiply(_zombieId, kittyDna, "kitty");
+  }
+
+  function feedZombieWithKitty(uint _zombieId, uint _kittyId) external onlyOwnerOf(_zombieId) {
+    Zombie storage myZombie = zombies[_zombieId];
+    require(_isReady(myZombie));
+    require(address(kittyContract) != address(0));
+
+    uint kittyDna;
+    (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);
+    kittyDna = kittyDna % dnaModulus;
+
+    uint newDna = (myZombie.dna + kittyDna) / 2;
+    newDna = newDna - newDna % 100 + 99;
+
+    myZombie.dna = newDna;
+    myZombie.level = myZombie.level.add(uint32(3));
+
+    _triggerCooldown(myZombie);
+
+    emit ZombieFed(_zombieId, _kittyId, myZombie.level);
   }
 }

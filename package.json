@@ -4,16 +4,17 @@
     "description": "This repository contains the consolidated and finalized code of the [cryptozombies.io](https://cryptozombies.io) project.",
     "main": "truffle.js",
     "directories": {
-      "test": "tests"
+        "test": "tests"
     },
     "scripts": {
-      "test": "truffle test"
+        "test": "truffle test"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
-      "chai": "^4.2.0",
-      "truffle": "^5.1.50"
+        "chai": "^4.2.0",
+        "postcss-nesting": "^13.0.2",
+        "truffle": "^5.1.50"
     }
-  }
+}

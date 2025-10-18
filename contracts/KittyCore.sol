@@ -7,6 +7,10 @@ contract KittyCore {
 
     Kitty[] public kitties;
 
+    function getKittyCount() external view returns (uint256) {
+        return kitties.length;
+    }
+
     function _generateRandomDna(string memory _str) private pure returns (uint256) {
         uint256 rand = uint256(keccak256(abi.encodePacked(_str)));
         return rand % (10 ** 16); // Ensure DNA is a 16-digit number
