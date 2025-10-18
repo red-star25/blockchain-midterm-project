@@ -541,12 +541,12 @@ const CryptoZombies = () => {
                 >
                   Rename
                 </button>
-                <button
+                {/* <button
                   className="action-btn action-btn-dna"
                   onClick={() => updateZombieDNA(index)}
                 >
                   Update DNA
-                </button>
+                </button> */}
               </div>
             </div>
           ))}
