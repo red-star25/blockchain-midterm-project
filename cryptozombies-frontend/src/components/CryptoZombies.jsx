@@ -577,7 +577,7 @@ const CryptoZombies = ({ onGoToMarketplace }) => {
       <div className="modern-container">
         <div className="modern-header header-with-action">
           <div className="header-text">
-            <h1 className="modern-title">Crypto Zombies</h1>
+            <h1 className="modern-title">CryptoZombies</h1>
             <p className="modern-subtitle">
               Collect, breed, feed and sell your digital creatures on the blockchain
             </p>
@@ -618,17 +618,13 @@ const CryptoZombies = ({ onGoToMarketplace }) => {
         </div>
 
         {/* Kitty Generation */}
-        <div className="modern-form-group fade-in-delay-2">
+        <div className="action-row fade-in-delay-2">
           <button
-            className="modern-btn modern-btn-outline"
+            className="modern-btn modern-btn-primary"
             onClick={createKitty}
           >
-            Generate Random Kitty
+            ✨ Generate Random Kitty
           </button>
-        </div>
-
-        {/* Breeding Section */}
-        <div className="modern-form-group fade-in-delay-3">
           <button
             className="modern-btn modern-btn-primary"
             onClick={openBreedingModal}
@@ -636,12 +632,12 @@ const CryptoZombies = ({ onGoToMarketplace }) => {
           >
             🧬 Breed Zombies ({breedingFee} ETH)
           </button>
-        </div>
-
-        {/* Feeding Section */}
-        <div className="modern-form-group fade-in-delay-3">
-          <button className="modern-btn modern-btn-primary" onClick={openFeedingModal}>
-            🍖 Feed Zombies (Gain 2-6 Levels)
+          <button
+            className="modern-btn modern-btn-primary"
+            onClick={openFeedingModal}
+            disabled={kitties.length < 1}
+          >
+            🍖 Feed Zombies (Gain Boosts)
           </button>
         </div>
 
@@ -870,11 +866,11 @@ const CryptoZombies = ({ onGoToMarketplace }) => {
                         <div className="kitty-multiplier">Boost: +{kitty.multiplier}</div>
                         <div className="kitty-dna">DNA: {kitty.dna}</div>
                       </div>
-                        <div className="breeding-zombie-stats">
+                      {/* <div className="breeding-zombie-stats">
                         <div>Boost: +{kitty.multiplier}</div>
                         <div>DNA: {String(kitty.dna).padStart(16, "0")}</div>
                         <div>ID: #{kitty.id}</div>
-                      </div>
+                      </div> */}
                       {selectedFeedingKitty === kitty.id && (
                         <div className="selected-indicator">✓ Selected</div>
                       )}

@@ -358,6 +358,22 @@
   width: 100%;
 }
 
+.action-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .action-row {
+    flex-direction: row;
+  }
+}
+
 /* Modern Grid */
 .modern-grid {
   display: grid;
