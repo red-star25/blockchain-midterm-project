@@ -67,7 +67,7 @@ BreedingStatus.propTypes = {
   level: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
-const CryptoZombies = () => {
+const CryptoZombies = ({ onGoToMarketplace }) => {
   const [web3, setWeb3] = useState(null);
   const [cryptoZombies, setCryptoZombies] = useState(null);
   const [kittyContract, setKittyContract] = useState(null);
@@ -575,11 +575,21 @@ const CryptoZombies = () => {
   return (
     <div className="modern-bg">
       <div className="modern-container">
-        <div className="modern-header">
-          <h1 className="modern-title">Crypto Zombies</h1>
-          <p className="modern-subtitle">
-            Collect, breed, feed and sell your digital creatures on the blockchain
-          </p>
+        <div className="modern-header header-with-action">
+          <div className="header-text">
+            <h1 className="modern-title">Crypto Zombies</h1>
+            <p className="modern-subtitle">
+              Collect, breed, feed and sell your digital creatures on the blockchain
+            </p>
+          </div>
+          {onGoToMarketplace && (
+            <button
+              className="modern-btn modern-btn-outline header-switch-btn"
+              onClick={onGoToMarketplace}
+            >
+              🛒 Go to Marketplace
+            </button>
+          )}
         </div>
         {/* Network Switch Button */}
         {/* <div className="fade-in">
@@ -965,6 +975,10 @@ const CryptoZombies = () => {
       </div>
     </div>
   );
+};
+
+CryptoZombies.propTypes = {
+  onGoToMarketplace: PropTypes.func,
 };
 
 export default CryptoZombies;
