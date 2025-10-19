@@ -7,6 +7,17 @@
 2. Dhruv Jitendrabhai Nakum - 807483318  - dhruvnakum@csu.fullerton.edu    - [GitHub](https://github.com/red-star25)
 3. Ishan Jawade           - 885186304  - ishanjawade@csu.fullerton.edu - [GitHub](https://github.com/IshanJawade)
 
+### Feature Improvements
+
+1. Sleek, modern **UI** with a stunning *liquid glass* aesthetic.
+2. **Random Kitty Generator** — discover adorable, one-of-a-kind kitties that grant random bonus points.
+3. **Dynamic Zombie Creation** — each new zombie is generated with unique DNA traits.
+4. **Feeding Mechanic** — feed zombies with kitties to boost their level and strength.
+5. **Breeding System Enhancements** — new and improved rules for zombie breeding and evolution.
+6. **Zombie Breeding Unlocks** — zombies gain the ability to breed once they reach level 3.
+7. **Custom Naming** — rename your zombies after they reach level 2.
+8. **Marketplace Showcase** — display your exclusive collection of zombies and kitties on the **CryptoZombies Marketplace**.
+
 # CryptoZombies — Local Development README
 
 A lightweight CryptoZombies project combining Solidity contracts (Truffle) and a React + Vite frontend. The repository includes deployment scripts that automatically update the frontend contract address configuration.
