@@ -7223,8 +7223,8 @@
         }
       },
       "links": {},
-      "address": "0x9E59f5018ae8Bf7A6bEef4E804440D54789cb89f",
-      "transactionHash": "0x2ed28d4218b3f3a494f25b370f12ae0d6ee4ce75e4758deb848bbed5f3eb0e54"
+      "address": "0xeaE0f48F29fB13eD704ca4f46485C061942C187f",
+      "transactionHash": "0x107afbbbbe960b439c7589857d810320419d8cbd509a3e4259f5790ee92b08e3"
     },
     "1760648217355": {
       "events": {},
@@ -7234,7 +7234,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-10-19T19:47:39.760Z",
+  "updatedAt": "2025-10-19T19:51:49.752Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {
