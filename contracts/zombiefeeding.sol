@@ -42,26 +42,34 @@ contract ZombieFeeding is ZombieFactory {
   }
 
   function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) internal onlyOwnerOf(_zombieId) {
+    require(
+      keccak256(abi.encodePacked(_species)) != keccak256(abi.encodePacked("kitty")),
+      "Use feedOnKitty"
+    );
+
     Zombie storage myZombie = zombies[_zombieId];
     require(_isReady(myZombie));
     _targetDna = _targetDna % dnaModulus;
     uint newDna = (myZombie.dna + _targetDna) / 2;
-    bool isKitty = keccak256(abi.encodePacked(_species)) == keccak256(abi.encodePacked("kitty"));
-    if (isKitty) {
-      newDna = newDna - newDna % 100 + 99;
-      myZombie.dna = newDna;
-      myZombie.level = myZombie.level.add(uint32(3));
-    } else {
-      _createZombie("NoName", newDna);
-    }
+    _createZombie("NoName", newDna);
     _triggerCooldown(myZombie);
   }
 
   function feedOnKitty(uint _zombieId, uint _kittyId) public {
     require(address(kittyContract) != address(0));
-    uint kittyDna;
-    (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);
-    feedAndMultiply(_zombieId, kittyDna, "kitty");
+    Zombie storage myZombie = zombies[_zombieId];
+    require(_isReady(myZombie));
+
+    (, uint kittyDna, uint8 multiplier) = kittyContract.getKittyMetadata(_kittyId);
+
+    uint targetDna = kittyDna % dnaModulus;
+    uint newDna = (myZombie.dna + targetDna) / 2;
+    newDna = newDna - newDna % 100 + 99;
+
+    myZombie.dna = newDna;
+    myZombie.level = myZombie.level.add(uint32(multiplier));
+
+    _triggerCooldown(myZombie);
     kittyContract.consumeKitty(_kittyId);
     emit ZombieFed(_zombieId, _kittyId, zombies[_zombieId].level);
   }

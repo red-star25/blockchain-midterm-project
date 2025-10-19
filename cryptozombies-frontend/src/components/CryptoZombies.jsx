@@ -82,7 +82,6 @@ const CryptoZombies = () => {
   const [selectedFeedingZombie, setSelectedFeedingZombie] = useState(null);
   const [selectedFeedingKitty, setSelectedFeedingKitty] = useState(null);
   const zombieNameRef = useRef("");
-  const kittyNameRef = useRef(""); // Kitty name input
 
   const getEligibleBreedingZombies = () =>
     zombies.filter((zombie) => Number(zombie.level) >= MINIMUM_BREEDING_LEVEL);
@@ -92,11 +91,16 @@ const CryptoZombies = () => {
     const fallbackBirthday = fallbackKitty?.birthday;
 
     if (!rawKitty) {
+      const fallbackMultiplierRaw = Number(fallbackKitty?.multiplier);
+      const fallbackMultiplier = Number.isFinite(fallbackMultiplierRaw)
+        ? Math.max(2, Math.min(6, fallbackMultiplierRaw))
+        : 3;
       return {
         id: index,
         name: fallbackName ?? `Kitty ${index}`,
         birthday: fallbackBirthday ?? Date.now(),
         dna: "0",
+        multiplier: fallbackMultiplier,
       };
     }
 
@@ -104,13 +108,20 @@ const CryptoZombies = () => {
     const nameValue =
       rawKitty.name ?? rawKitty[0] ?? fallbackName ?? `Kitty ${index}`;
     const genesValue =
-      rawKitty.dna ?? rawKitty[1] ?? rawKitty.genes ?? rawKitty[0] ?? "0";
+      rawKitty.dna ?? rawKitty[1] ?? rawKitty.genes ?? "0";
+      const multiplierValue = Number(
+        rawKitty.multiplier ?? rawKitty[2] ?? fallbackKitty?.multiplier ?? 3
+      );
+      const sanitizedMultiplier = Number.isFinite(multiplierValue)
+        ? Math.max(2, Math.min(6, multiplierValue))
+        : 3;
 
     return {
       id: index,
       name: nameValue,
       birthday: fallbackBirthday ?? Date.now(),
       dna: genesValue.toString(),
+        multiplier: sanitizedMultiplier,
     };
   };
 
@@ -316,25 +327,22 @@ const CryptoZombies = () => {
   // Removed DNA update functionality
 
   const createKitty = async () => {
-    const name = kittyNameRef.current.value;
-    if (!name) {
-      setStatus("Please enter a name for your kitty");
-      return;
-    }
-
     if (!kittyContract || !userAccount) {
       setStatus("Kitty contract not loaded or wallet not connected");
       return;
     }
 
-    try {
-      setStatus("Creating kitty on-chain...");
+    const randomSuffix = Math.floor(Math.random() * 101);
+    const name = `Kitty${randomSuffix}`;
 
-      const tx = await kittyContract.methods
+    try {
+      setStatus(`Generating ${name} on-chain...`);
+
+      await kittyContract.methods
         .createRandomKitty(name)
-        .send({ 
+        .send({
           from: userAccount,
-          gas: 300000 // Add gas limit
+          gas: 300000, // Add gas limit
         });
 
       const kittyCount = await kittyContract.methods.getKittyCount().call();
@@ -348,13 +356,14 @@ const CryptoZombies = () => {
         birthday: Date.now(),
       });
 
-  setKitties((existingKitties) => [...existingKitties, newKitty]);
-  fetchKitties(kittyContract);
-      kittyNameRef.current.value = "";
-      setStatus("Kitty created successfully!");
+      setKitties((existingKitties) => [...existingKitties, newKitty]);
+      await fetchKitties(kittyContract);
+      setStatus(
+        `Kitty ${name} generated successfully! Multiplier ×${newKitty.multiplier}`
+      );
     } catch (error) {
-      console.error("Error creating kitty:", error);
-      setStatus(`Error creating kitty: ${error.message}`);
+      console.error("Error generating kitty:", error);
+      setStatus(`Error generating kitty: ${error.message}`);
     }
   };
 
@@ -498,14 +507,17 @@ const CryptoZombies = () => {
       return;
     }
 
-    if (!cryptoZombies || !userAccount) {
+    if (!cryptoZombies || !userAccount || !kittyContract) {
       setStatus("Contract not loaded or wallet not connected");
       return;
     }
 
-    try {
-      setStatus("Feeding zombie... Level will increase by 3");
+    const feedingKitty = kitties.find(
+      (kitty) => kitty.id === selectedFeedingKitty
+    );
+    let levelGain = Number(feedingKitty?.multiplier ?? 3);
 
+    try {
       // First get the zombie data to check readyTime
       const zombieData = await cryptoZombies.methods.zombies(selectedFeedingZombie).call();
       const now = Math.floor(Date.now() / 1000);
@@ -514,13 +526,22 @@ const CryptoZombies = () => {
         return;
       }
 
-      // Check if kitty exists
+      // Fetch kitty metadata to confirm existence and multiplier
+      let onChainKitty;
       try {
-        await kittyContract.methods.kitties(selectedFeedingKitty).call();
+        onChainKitty = await kittyContract.methods
+          .getKittyMetadata(selectedFeedingKitty)
+          .call();
       } catch (error) {
         setStatus("This kitty doesn't exist or has already been eaten!");
         return;
       }
+
+      levelGain = Number(
+        onChainKitty.multiplier ?? onChainKitty[2] ?? levelGain ?? 3
+      );
+
+      setStatus(`Feeding zombie... Level will increase by ${levelGain}`);
 
       // Call feedOnKitty function from the contract
       const tx = await cryptoZombies.methods
@@ -533,14 +554,17 @@ const CryptoZombies = () => {
       console.log("Feeding transaction:", tx);
 
       // Update kitties list
-  setKitties(kitties.filter(kitty => kitty.id !== selectedFeedingKitty));
-  await fetchKitties(kittyContract);
+      setKitties((currentKitties) =>
+        currentKitties.filter((kitty) => kitty.id !== selectedFeedingKitty)
+      );
+
+      await fetchKitties(kittyContract);
 
       // Refresh zombies to show updated level
       await fetchZombies(userAccount, cryptoZombies);
       
       closeFeedingModal();
-      setStatus("Zombie fed successfully! Level increased by 3");
+      setStatus(`Zombie fed successfully! Level increased by ${levelGain}`);
     } catch (error) {
       console.error("Error feeding zombie:", error);
       setStatus(`Feeding failed: ${error.message}`);
@@ -555,7 +579,7 @@ const CryptoZombies = () => {
         <div className="modern-header">
           <h1 className="modern-title">Crypto Zombies</h1>
           <p className="modern-subtitle">
-            Collect, breed, and battle your digital creatures on the blockchain
+            Collect, breed, feed and sell your digital creatures on the blockchain
           </p>
         </div>
         {/* Network Switch Button */}
@@ -584,19 +608,13 @@ const CryptoZombies = () => {
           </button>
         </div>
 
-        {/* Kitty Creation */}
+        {/* Kitty Generation */}
         <div className="modern-form-group fade-in-delay-2">
-          <input
-            type="text"
-            ref={kittyNameRef}
-            placeholder="Enter kitty name"
-            className="modern-input"
-          />
           <button
             className="modern-btn modern-btn-outline"
-            onClick={() => createKitty()}
+            onClick={createKitty}
           >
-            Create Kitty
+            Generate Random Kitty
           </button>
         </div>
 
@@ -614,7 +632,7 @@ const CryptoZombies = () => {
         {/* Feeding Section */}
         <div className="modern-form-group fade-in-delay-3">
           <button className="modern-btn modern-btn-primary" onClick={openFeedingModal}>
-            🍖 Feed Zombies (Gain 3 Levels)
+            🍖 Feed Zombies (Gain 2-6 Levels)
           </button>
         </div>
 
@@ -635,7 +653,7 @@ const CryptoZombies = () => {
               </div>
               <div className="breeding-modal-content">
                 <p className="breeding-info">
-                  Select a zombie and a kitty for feeding. The zombie will gain 3 levels, and the kitty will be consumed.
+                  Select a zombie and a kitty for feeding. Each kitty boosts levels by its multiplier (2-6) and is consumed.
                 </p>
                 <div className="breeding-section">
                   <h3>Select Zombie to Feed</h3>
@@ -678,6 +696,10 @@ const CryptoZombies = () => {
                           className="breeding-zombie-image"
                         />
                         <h4>{kitty.name}</h4>
+                        <div className="stat-item">
+                          <div className="stat-label">Multiplier</div>
+                          <div className="stat-value">×{kitty.multiplier}</div>
+                        </div>
                         <div className="stat-item">
                           <div className="stat-label">DNA</div>
                           <div className="stat-value">{kitty.dna}</div>
@@ -789,8 +811,8 @@ const CryptoZombies = () => {
               </div>
               <div className="breeding-modal-content">
                 <p className="breeding-info">
-                  Select a zombie and a kitty. Feeding increases the zombie&apos;s level by 3
-                  instantly.
+                  Select a zombie and a kitty. Feeding applies the kitty&apos;s multiplier (2-6)
+                  to the zombie&apos;s level instantly.
                 </p>
                 <h3 className="modal-section-title">Choose a Zombie</h3>
                 <div className="breeding-zombie-grid">
@@ -836,11 +858,12 @@ const CryptoZombies = () => {
                       />
                       <div className="kitty-info">
                         <h4>{kitty.name}</h4>
+                        <div className="kitty-multiplier">Multiplier: ×{kitty.multiplier}</div>
                         <div className="kitty-dna">DNA: {kitty.dna}</div>
                       </div>
-                      <h4>{kitty.name}</h4>
                       <div className="breeding-zombie-stats">
-                        <div>DNA: {String(kitty.dna).padStart(16, '0')}</div>
+                        <div>Multiplier: ×{kitty.multiplier}</div>
+                        <div>DNA: {String(kitty.dna).padStart(16, "0")}</div>
                         <div>ID: #{kitty.id}</div>
                       </div>
                       {selectedFeedingKitty === kitty.id && (
@@ -925,6 +948,10 @@ const CryptoZombies = () => {
                 />
                 <h3 className="creature-name">{kitty.name}</h3>
                 <div className="creature-stats">
+                  <div className="stat-item">
+                    <div className="stat-label">Multiplier</div>
+                    <div className="stat-value">×{kitty.multiplier}</div>
+                  </div>
                   <div className="stat-item">
                     <div className="stat-label">DNA</div>
                     <div className="stat-value">{kitty.dna}</div>

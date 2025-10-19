@@ -18,6 +18,10 @@
         {
           "name": "name",
           "type": "string"
+        },
+        {
+          "name": "multiplier",
+          "type": "uint8"
         }
       ],
       "payable": false,
@@ -138,6 +142,10 @@
         {
           "name": "dna",
           "type": "uint256"
+        },
+        {
+          "name": "multiplier",
+          "type": "uint8"
         }
       ],
       "payable": false,
@@ -182,6 +190,10 @@
         {
           "name": "_name",
           "type": "string"
+        },
+        {
+          "name": "_multiplier",
+          "type": "uint8"
         }
       ],
       "name": "_createKitty",
