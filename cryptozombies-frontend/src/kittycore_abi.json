@@ -14,6 +14,14 @@
         {
           "name": "dna",
           "type": "uint256"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "multiplier",
+          "type": "uint8"
         }
       ],
       "payable": false,
@@ -21,31 +29,45 @@
       "type": "function"
     },
     {
-      "constant": false,
-      "inputs": [
+      "constant": true,
+      "inputs": [],
+      "name": "zombieContract",
+      "outputs": [
         {
-          "name": "_name",
-          "type": "string"
+          "name": "",
+          "type": "address"
         }
       ],
-      "name": "createRandomKitty",
-      "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
       "type": "function"
     },
     {
-      "constant": false,
-      "inputs": [
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
         {
-          "name": "_dna",
-          "type": "uint256"
+          "name": "",
+          "type": "address"
         }
       ],
-      "name": "_createKitty",
-      "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isOwner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -105,6 +127,33 @@
     },
     {
       "constant": true,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getKittyMetadata",
+      "outputs": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "dna",
+          "type": "uint256"
+        },
+        {
+          "name": "multiplier",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
       "inputs": [],
       "name": "getKittyCount",
       "outputs": [
@@ -115,6 +164,93 @@
       ],
       "payable": false,
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_name",
+          "type": "string"
+        }
+      ],
+      "name": "createRandomKitty",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_dna",
+          "type": "uint256"
+        },
+        {
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "name": "_multiplier",
+          "type": "uint8"
+        }
+      ],
+      "name": "_createKitty",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_zombieContract",
+          "type": "address"
+        }
+      ],
+      "name": "setZombieContract",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "consumeKitty",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     }
   ]

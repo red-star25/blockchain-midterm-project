@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity >=0.4.22 <0.9.0;
 
 import "./zombiehelper.sol";
 
@@ -110,7 +110,7 @@ contract ZombieBreeding is ZombieHelper {
         bytes memory bstr = new bytes(len);
         uint k = len - 1;
         while (_i != 0) {
-            bstr[k--] = byte(uint8(48 + _i % 10));
+            bstr[k--] = bytes1(uint8(48 + (_i % 10)));
             _i /= 10;
         }
         return string(bstr);

@@ -19,6 +19,12 @@ module.exports = async function (deployer) {
   await deployer.deploy(zombieownership);
   await deployer.deploy(kittyCore);
 
+  const zombieOwnershipInstance = await zombieownership.deployed();
+  const kittyCoreInstance = await kittyCore.deployed();
+
+  await zombieOwnershipInstance.setKittyContractAddress(kittyCoreInstance.address);
+  await kittyCoreInstance.setZombieContract(zombieOwnershipInstance.address);
+
   // Get deployed contract addresses
   const contractAddresses = {
     zombieOwnership: zombieownership.address,
