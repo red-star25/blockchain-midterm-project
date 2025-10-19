@@ -1,11 +1,19 @@
 pragma solidity >=0.4.22 <0.9.0;
 
-contract KittyCore {
+import "./ownable.sol";
+
+contract KittyCore is Ownable {
     struct Kitty {
         uint256 dna;
     }
 
     Kitty[] public kitties;
+    address public zombieContract;
+
+    modifier onlyZombieContract() {
+        require(msg.sender == zombieContract, "Caller must be zombie contract");
+        _;
+    }
 
     function getKittyCount() external view returns (uint256) {
         return kitties.length;
@@ -23,6 +31,23 @@ contract KittyCore {
 
     function _createKitty(uint256 _dna) public {
         kitties.push(Kitty(_dna));
+    }
+
+    function setZombieContract(address _zombieContract) external onlyOwner {
+        require(_zombieContract != address(0), "Invalid zombie contract");
+        require(zombieContract == address(0), "Zombie contract already set");
+        zombieContract = _zombieContract;
+    }
+
+    function consumeKitty(uint256 _id) external onlyZombieContract {
+        require(_id < kitties.length, "Invalid kitty id");
+        uint256 lastIndex = kitties.length - 1;
+
+        if (_id != lastIndex) {
+            kitties[_id] = kitties[lastIndex];
+        }
+
+        kitties.length--;
     }
 
     function getKitty(uint256 _id) external view returns (
