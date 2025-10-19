@@ -155,7 +155,6 @@ const CryptoZombies = () => {
       );
     } catch (error) {
       console.error("Error fetching kitties:", error);
-      setStatus("Error fetching kitties");
     }
   };
 
@@ -359,7 +358,7 @@ const CryptoZombies = () => {
       setKitties((existingKitties) => [...existingKitties, newKitty]);
       await fetchKitties(kittyContract);
       setStatus(
-        `Kitty ${name} generated successfully! Multiplier ×${newKitty.multiplier}`
+        `${name} generated successfully! Boost +${newKitty.multiplier}`
       );
     } catch (error) {
       console.error("Error generating kitty:", error);
@@ -653,7 +652,7 @@ const CryptoZombies = () => {
               </div>
               <div className="breeding-modal-content">
                 <p className="breeding-info">
-                  Select a zombie and a kitty for feeding. Each kitty boosts levels by its multiplier (2-6) and is consumed.
+                  Select a zombie and a kitty for feeding. Each kitty grants a boost (+2 to +6 levels) and is consumed.
                 </p>
                 <div className="breeding-section">
                   <h3>Select Zombie to Feed</h3>
@@ -697,8 +696,8 @@ const CryptoZombies = () => {
                         />
                         <h4>{kitty.name}</h4>
                         <div className="stat-item">
-                          <div className="stat-label">Multiplier</div>
-                          <div className="stat-value">×{kitty.multiplier}</div>
+                          <div className="stat-label">Boost</div>
+                          <div className="stat-value">+{kitty.multiplier}</div>
                         </div>
                         <div className="stat-item">
                           <div className="stat-label">DNA</div>
@@ -811,8 +810,8 @@ const CryptoZombies = () => {
               </div>
               <div className="breeding-modal-content">
                 <p className="breeding-info">
-                  Select a zombie and a kitty. Feeding applies the kitty&apos;s multiplier (2-6)
-                  to the zombie&apos;s level instantly.
+                  Select a zombie and a kitty. Feeding applies the kitty&apos;s boost (+2 to +6 levels)
+                  to the zombie instantly.
                 </p>
                 <h3 className="modal-section-title">Choose a Zombie</h3>
                 <div className="breeding-zombie-grid">
@@ -858,11 +857,11 @@ const CryptoZombies = () => {
                       />
                       <div className="kitty-info">
                         <h4>{kitty.name}</h4>
-                        <div className="kitty-multiplier">Multiplier: ×{kitty.multiplier}</div>
+                        <div className="kitty-multiplier">Boost: +{kitty.multiplier}</div>
                         <div className="kitty-dna">DNA: {kitty.dna}</div>
                       </div>
-                      <div className="breeding-zombie-stats">
-                        <div>Multiplier: ×{kitty.multiplier}</div>
+                        <div className="breeding-zombie-stats">
+                        <div>Boost: +{kitty.multiplier}</div>
                         <div>DNA: {String(kitty.dna).padStart(16, "0")}</div>
                         <div>ID: #{kitty.id}</div>
                       </div>
@@ -949,12 +948,12 @@ const CryptoZombies = () => {
                 <h3 className="creature-name">{kitty.name}</h3>
                 <div className="creature-stats">
                   <div className="stat-item">
-                    <div className="stat-label">Multiplier</div>
-                    <div className="stat-value">×{kitty.multiplier}</div>
-                  </div>
-                  <div className="stat-item">
                     <div className="stat-label">DNA</div>
                     <div className="stat-value">{kitty.dna}</div>
+                  </div>
+                  <div className="stat-item">
+                    <div className="stat-label">Boost</div>
+                    <div className="stat-value">+{kitty.multiplier}</div>
                   </div>
                 </div>
                 <div className="creature-meta">
