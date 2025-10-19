@@ -87,27 +87,29 @@ const CryptoZombies = () => {
   const getEligibleBreedingZombies = () =>
     zombies.filter((zombie) => Number(zombie.level) >= MINIMUM_BREEDING_LEVEL);
 
-  const normalizeKittyData = (rawKitty, index, fallbackName) => {
+  const normalizeKittyData = (rawKitty, index, fallbackKitty) => {
+    const fallbackName = fallbackKitty?.name;
+    const fallbackBirthday = fallbackKitty?.birthday;
+
     if (!rawKitty) {
       return {
         id: index,
         name: fallbackName ?? `Kitty ${index}`,
-        generation: 0,
-        birthday: Date.now(),
+        birthday: fallbackBirthday ?? Date.now(),
         dna: "0",
       };
     }
 
     // Web3 returns both array-style and key-based properties.
+    const nameValue =
+      rawKitty.name ?? rawKitty[0] ?? fallbackName ?? `Kitty ${index}`;
     const genesValue =
-      rawKitty.genes ?? rawKitty.dna ?? rawKitty[9] ?? rawKitty[0] ?? "0";
-    const generationValue = rawKitty.generation ?? rawKitty[8] ?? 0;
+      rawKitty.dna ?? rawKitty[1] ?? rawKitty.genes ?? rawKitty[0] ?? "0";
 
     return {
       id: index,
-      name: fallbackName ?? rawKitty.name ?? `Kitty ${index}`,
-      generation: Number(generationValue) || 0,
-      birthday: Date.now(),
+      name: nameValue,
+      birthday: fallbackBirthday ?? Date.now(),
       dna: genesValue.toString(),
     };
   };
@@ -127,19 +129,19 @@ const CryptoZombies = () => {
 
       const kittyData = await Promise.all(
         Array.from({ length: kittyCount }, (_, index) =>
-          contract.methods.getKitty(index).call()
+          contract.methods.getKittyMetadata(index).call()
         )
       );
 
-      setKitties((existingKitties) => {
-        const nameLookup = new Map(
-          existingKitties.map((kitty) => [kitty.id, kitty.name])
-        );
-
-        return kittyData.map((kitty, index) =>
-          normalizeKittyData(kitty, index, nameLookup.get(index))
-        );
-      });
+      setKitties((existingKitties) =>
+        kittyData.map((kitty, index) =>
+          normalizeKittyData(
+            kitty,
+            index,
+            existingKitties.find((existingKitty) => existingKitty.id === index)
+          )
+        )
+      );
     } catch (error) {
       console.error("Error fetching kitties:", error);
       setStatus("Error fetching kitties");
@@ -337,9 +339,14 @@ const CryptoZombies = () => {
 
       const kittyCount = await kittyContract.methods.getKittyCount().call();
       const kittyId = Number(kittyCount) - 1;
-      const kittyData = await kittyContract.methods.getKitty(kittyId).call();
+      const kittyData = await kittyContract.methods
+        .getKittyMetadata(kittyId)
+        .call();
 
-      const newKitty = normalizeKittyData(kittyData, kittyId, name);
+      const newKitty = normalizeKittyData(kittyData, kittyId, {
+        name,
+        birthday: Date.now(),
+      });
 
   setKitties((existingKitties) => [...existingKitties, newKitty]);
   fetchKitties(kittyContract);
@@ -526,7 +533,8 @@ const CryptoZombies = () => {
       console.log("Feeding transaction:", tx);
 
       // Update kitties list
-      setKitties(kitties.filter(kitty => kitty.id !== selectedFeedingKitty));
+  setKitties(kitties.filter(kitty => kitty.id !== selectedFeedingKitty));
+  await fetchKitties(kittyContract);
 
       // Refresh zombies to show updated level
       await fetchZombies(userAccount, cryptoZombies);
@@ -917,10 +925,6 @@ const CryptoZombies = () => {
                 />
                 <h3 className="creature-name">{kitty.name}</h3>
                 <div className="creature-stats">
-                  <div className="stat-item">
-                    <div className="stat-label">Generation</div>
-                    <div className="stat-value">{kitty.generation}</div>
-                  </div>
                   <div className="stat-item">
                     <div className="stat-label">DNA</div>
                     <div className="stat-value">{kitty.dna}</div>

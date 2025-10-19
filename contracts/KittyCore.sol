@@ -5,6 +5,7 @@ import "./ownable.sol";
 contract KittyCore is Ownable {
     struct Kitty {
         uint256 dna;
+        string name;
     }
 
     Kitty[] public kitties;
@@ -26,11 +27,12 @@ contract KittyCore is Ownable {
 
     function createRandomKitty(string memory _name) public {
         uint256 randDna = _generateRandomDna(_name);
-        _createKitty(randDna);
+        _createKitty(randDna, _name);
     }
 
-    function _createKitty(uint256 _dna) public {
-        kitties.push(Kitty(_dna));
+    function _createKitty(uint256 _dna, string memory _name) public {
+        string memory kittyName = bytes(_name).length > 0 ? _name : "Nameless Kitty";
+        kitties.push(Kitty(_dna, kittyName));
     }
 
     function setZombieContract(address _zombieContract) external onlyOwner {
@@ -47,6 +49,7 @@ contract KittyCore is Ownable {
             kitties[_id] = kitties[lastIndex];
         }
 
+        delete kitties[lastIndex];
         kitties.length--;
     }
 
@@ -63,7 +66,14 @@ contract KittyCore is Ownable {
         uint256 genes
     ) {
         // Simplified response for compatibility with ZombieFeeding
+        require(_id < kitties.length, "Invalid kitty id");
         genes = kitties[_id].dna;
         return (false, true, 0, 0, 0, block.timestamp, 0, 0, 0, genes);
+    }
+
+    function getKittyMetadata(uint256 _id) external view returns (string memory name, uint256 dna) {
+        require(_id < kitties.length, "Invalid kitty id");
+        Kitty storage kitty = kitties[_id];
+        return (kitty.name, kitty.dna);
     }
 }
