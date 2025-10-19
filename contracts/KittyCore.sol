@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity >=0.4.22 <0.9.0;
 
 contract KittyCore {
     struct Kitty {
@@ -39,6 +39,6 @@ contract KittyCore {
     ) {
         // Simplified response for compatibility with ZombieFeeding
         genes = kitties[_id].dna;
-        return (false, true, 0, 0, 0, now, 0, 0, 0, genes);
+        return (false, true, 0, 0, 0, block.timestamp, 0, 0, 0, genes);
     }
 }
