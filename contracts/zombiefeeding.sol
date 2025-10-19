@@ -34,7 +34,7 @@ contract ZombieFeeding is ZombieFactory {
   }
 
   function _triggerCooldown(Zombie storage _zombie) internal {
-    _zombie.readyTime = uint32(now + cooldownTime);
+    _zombie.readyTime = uint32(now);
   }
 
   function _isReady(Zombie storage _zombie) internal view returns (bool) {
