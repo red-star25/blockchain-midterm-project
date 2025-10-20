@@ -18,6 +18,12 @@
 7. **Custom Naming** — rename your zombies after they reach level 2.
 8. **Marketplace Showcase** — display your exclusive collection of zombies and kitties on the **CryptoZombies Marketplace**.
 
+### DashBoard
+![Alt text](images/1.png)
+
+### Marketplace
+![Alt text](images/2.png)
+
 # CryptoZombies — Local Development README
 
 A lightweight CryptoZombies project combining Solidity contracts (Truffle) and a React + Vite frontend. The repository includes deployment scripts that automatically update the frontend contract address configuration.
