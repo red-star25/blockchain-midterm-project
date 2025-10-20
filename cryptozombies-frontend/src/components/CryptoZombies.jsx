@@ -938,6 +938,12 @@ const CryptoZombies = ({ onGoToMarketplace }) => {
                 >
                   Rename
                 </button>
+                {/* <button
+                  className="action-btn action-btn-dna"
+                  onClick={() => updateZombieDNA(index)}
+                >
+                  Update DNA
+                </button> */}
               </div>
             </div>
           ))}
